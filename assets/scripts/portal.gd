@@ -1,5 +1,4 @@
-class_name Portal
-extends Marker2D
+class_name Portal extends Marker2D
 
 @export var other_portal: Portal
 @export var flipped: bool = false

@@ -1,5 +1,4 @@
-class_name PortalAffectedRigidbody
-extends PortalAffected
+class_name PortalAffectedRigidbody extends PortalAffected
 
 
 func _ready():
