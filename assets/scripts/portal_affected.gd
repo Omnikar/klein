@@ -1,8 +1,7 @@
 class_name PortalAffected
-extends Node
+extends PortalDisplayed
 
 @export var transform_node: Node2D
-@export var graphics: Array[Node2D]
 @export_range(-180, 180, 0.1, "radians_as_degrees") var reflect_axis_angle: float = PI / 2
 
 var last_pos: Vector2

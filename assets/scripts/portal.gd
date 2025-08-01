@@ -9,7 +9,7 @@ var end: Vector2
 var length: float
 var angle: float
 
-var phantom: Node2D = null
+var phantoms: Array[Node2D] = []
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,8 +31,11 @@ func update_params():
 
 
 func _process(_delta: float):
-	clear_phantom()
+	clear_phantoms()
 	var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
+	for obj in objects:
+		make_phantom(obj)
+	objects = get_tree().get_nodes_in_group("portal_displayed") as Array[PortalAffected]
 	for obj in objects:
 		make_phantom(obj)
 
@@ -97,17 +100,18 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		obj.flipped = !obj.flipped
 
 
-func clear_phantom():
-	if phantom != null:
+func clear_phantoms():
+	for phantom in phantoms:
 		phantom.queue_free()
-		phantom = null
+	phantoms = []
 
 
-func make_phantom(obj: PortalAffected):
+func make_phantom(obj: PortalDisplayed):
 	for graphic in obj.graphics:
-		phantom = graphic.duplicate() as Node2D
+		var phantom = graphic.duplicate() as Node2D
 		phantom.add_to_group("portal_phantom")
 		add_child(phantom)
+		phantoms.append(phantom)
 
 		var rotate_angle = other_portal.angle - angle
 		var in_to_graphic = graphic.global_position - start
