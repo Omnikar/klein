@@ -4,8 +4,6 @@ extends CharacterBody2D
 @export var speed = 50.0
 @export var jump_vel = 140.0
 
-var flipped = false
-
 
 func update_up_direction():
 	up_direction = Vector2.UP.rotated(rotation)

@@ -9,6 +9,8 @@ var end: Vector2
 var length: float
 var angle: float
 
+var phantom: Node2D = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,17 +18,29 @@ func _ready() -> void:
 
 
 func update_params():
-	start = global_position
-	end = $Endpoint.global_position
+	var start_ = global_position
+	var end_ = $Endpoint.global_position
+	if flipped:
+		start = end_
+		end = start_
+	else:
+		start = start_
+		end = end_
 	length = (end - start).length()
 	angle = (end - start).angle()
 
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float):
+	clear_phantom()
+	var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
+	for obj in objects:
+		make_phantom(obj)
+
+
+func _physics_process(_delta: float):
 	update_params()
 
 	var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
-
 	for obj in objects:
 		var intersect = obj.portal_intersect(start, end)
 		if intersect is Vector2:
@@ -46,6 +60,7 @@ func flip(v: Vector2) -> Vector2:
 		return v
 
 
+# TODO: Change scale if the portals are different sizes?
 func teleport(obj: PortalAffected, entrance: Vector2):
 	var rotate_angle = other_portal.angle - angle
 	print("rotate angle: ", rotate_angle)
@@ -78,5 +93,29 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		)
 		print("new velocity: ", obj.transform_node.linear_velocity)
 
-	if obj.transform_node is PlayerController and should_flip():
-		obj.transform_node.flipped = !obj.transform_node.flipped
+	if should_flip():
+		obj.flipped = !obj.flipped
+
+
+func clear_phantom():
+	if phantom != null:
+		phantom.queue_free()
+		phantom = null
+
+
+func make_phantom(obj: PortalAffected):
+	for graphic in obj.graphics:
+		phantom = graphic.duplicate() as Node2D
+		phantom.add_to_group("portal_phantom")
+		add_child(phantom)
+
+		var rotate_angle = other_portal.angle - angle
+		var in_to_graphic = graphic.global_position - start
+		var out_to_phantom = in_to_graphic.rotated(rotate_angle)
+
+		phantom.global_rotation = graphic.global_rotation + rotate_angle
+		phantom.global_position = other_portal.start + flip(out_to_phantom)
+
+		phantom.scale = flip(phantom.scale.rotated(phantom.global_rotation)).rotated(
+			-phantom.global_rotation
+		)

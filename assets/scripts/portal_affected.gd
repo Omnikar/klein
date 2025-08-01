@@ -8,6 +8,8 @@ extends Node
 var last_pos: Vector2
 var this_pos: Vector2
 
+var flipped: bool = false
+
 
 func _ready():
 	reset_pos_history()
