@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://hur5qfby6x45"]
+
+[ext_resource type="Script" uid="uid://bl8vo6lvw7xwa" path="res://assets/scripts/portal_affected.gd" id="1_bw4sc"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_utojc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqqwo"]
+size = Vector2(4, 4)
+
+[node name="TestObject" type="RigidBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = SubResource("PlaceholderTexture2D_utojc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wqqwo")
+
+[node name="PortalAffected" type="Node" parent="." node_paths=PackedStringArray("transform_node", "graphics")]
+script = ExtResource("1_bw4sc")
+transform_node = NodePath("..")
+graphics = [NodePath("../Sprite2D")]
+metadata/_custom_type_script = "uid://bl8vo6lvw7xwa"

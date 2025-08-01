@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://biobskbj64hib"]
+
+[ext_resource type="Script" uid="uid://cd30u4ova2ddh" path="res://assets/scripts/portal.gd" id="1_nog5u"]
+
+[node name="Portal" type="Marker2D"]
+script = ExtResource("1_nog5u")
+
+[node name="Endpoint" type="Marker2D" parent="."]
+position = Vector2(0, 64)
