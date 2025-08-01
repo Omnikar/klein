@@ -8,6 +8,7 @@ var last_pos: Vector2
 var this_pos: Vector2
 
 var flipped: bool = false
+var gravity_angle: float = 0
 
 
 func _ready():
@@ -34,3 +35,13 @@ func portal_intersect(start: Vector2, end: Vector2):
 		print("start: ", start)
 		print("end: ", end)
 	return out
+
+
+func set_rotation(rot: float):
+	var diff = rot - gravity_angle
+	rotate(diff)
+
+
+func rotate(rot: float):
+	gravity_angle += rot
+	transform_node.rotation += rot

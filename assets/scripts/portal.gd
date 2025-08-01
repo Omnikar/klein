@@ -78,11 +78,11 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 
 	obj.transform_node.global_translate(final_pos - obj.this_pos)
 	obj.reset_pos_history()
-	obj.transform_node.rotation += rotate_angle
+	obj.rotate(rotate_angle)
 	if should_flip():
-		var refl_axis_angle = obj.transform_node.rotation + obj.reflect_axis_angle
+		var refl_axis_angle = obj.gravity_angle + obj.reflect_axis_angle
 		var extra_rotation = 2 * (other_portal.angle - refl_axis_angle)
-		obj.transform_node.rotation += extra_rotation
+		obj.rotate(extra_rotation)
 
 	if obj.transform_node is CharacterBody2D:
 		print("old velocity: ", obj.transform_node.velocity)
@@ -91,10 +91,12 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		print("new velocity: ", obj.transform_node.velocity)
 	elif obj.transform_node is RigidBody2D:
 		print("old velocity: ", obj.transform_node.linear_velocity)
-		obj.transform_node.set_linear_velocity(
-			obj.transform_node.linear_velocity.rotated(rotate_angle)
-		)
+		var new_vel = obj.transform_node.linear_velocity.rotated(rotate_angle)
+		obj.transform_node.set_linear_velocity(flip(new_vel))
 		print("new velocity: ", obj.transform_node.linear_velocity)
+		if should_flip():
+			var new_avel = -obj.transform_node.angular_velocity
+			obj.transform_node.set_angular_velocity(new_avel)
 
 	if should_flip():
 		obj.flipped = !obj.flipped
@@ -120,6 +122,7 @@ func make_phantom(obj: PortalDisplayed):
 		phantom.global_rotation = graphic.global_rotation + rotate_angle
 		phantom.global_position = other_portal.start + flip(out_to_phantom)
 
-		phantom.scale = flip(phantom.scale.rotated(phantom.global_rotation)).rotated(
-			-phantom.global_rotation
-		)
+		if should_flip():
+			var extra_rotation = 2 * (other_portal.angle - phantom.global_rotation)
+			phantom.global_rotation += extra_rotation
+			phantom.scale.y *= -1

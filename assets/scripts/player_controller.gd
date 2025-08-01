@@ -4,6 +4,13 @@ extends CharacterBody2D
 @export var speed = 50.0
 @export var jump_vel = 140.0
 
+var last_flipped: bool
+var last_direction: float = 0
+
+
+func _ready():
+	last_flipped = $PortalAffected.flipped
+
 
 func update_up_direction():
 	up_direction = Vector2.UP.rotated(rotation)
@@ -40,6 +47,11 @@ func relative_y_vel() -> float:
 func _physics_process(delta: float):
 	update_up_direction()
 
+	var flipped = $PortalAffected.flipped
+	if flipped != last_flipped:
+		last_direction *= -1
+	last_flipped = flipped
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity().rotated(rotation) * delta
@@ -50,11 +62,15 @@ func _physics_process(delta: float):
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
+	if last_direction != 0 and direction != 0:
+		direction = last_direction
+	elif cos(rotation) < -0.01:
+		direction *= -1
 	if direction:
-		if cos(rotation) < -0.01:
-			direction *= -1
 		set_relative_x_vel(direction * speed)
 	else:
 		set_relative_x_vel(move_toward(relative_x_vel(), 0, speed))
+
+	last_direction = direction
 
 	move_and_slide()
