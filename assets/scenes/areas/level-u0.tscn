@@ -76,7 +76,6 @@ position = Vector2(16, 8)
 
 [node name="Player" parent="." instance=ExtResource("7_v7i0w")]
 position = Vector2(16, 88)
-mass = 5
 
 [connection signal="plate_updated" from="PressurePlate" to="SlideGate" method="set_open"]
 [connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
