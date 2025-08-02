@@ -128,7 +128,8 @@ func handle_carry():
 				carry.freeze = true
 		else:
 			carry.reparent(carry_orig_parent)
-			carry.set_linear_velocity(velocity * 0.5)
+			# carry.set_linear_velocity(velocity * 0.5)
+			carry.set_linear_velocity(Vector2.ZERO)
 			carry.set_angular_velocity(0)
 			set_portal_affecteds_enabled(carry, true)
 			var portal_affecteds = find_portal_affecteds(carry)

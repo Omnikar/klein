@@ -1,7 +1,8 @@
 @tool
 class_name SlideGate extends Node2D
 
-@export var gate_speed: float = 40.0
+@export var open_speed: float = 10.0
+@export var close_speed: float = 40.0
 @export var open: bool = false
 
 var open_pos: Vector2
@@ -32,6 +33,7 @@ func _physics_process(delta: float):
 		return
 
 	var target_pos = open_pos if open else closed_pos
+	var gate_speed = open_speed if open else close_speed
 	var to_target: Vector2 = target_pos - $GateLayer.position
 	var max_move_dist = gate_speed * delta
 

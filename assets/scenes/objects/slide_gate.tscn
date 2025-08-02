@@ -88,7 +88,6 @@ sources/0 = SubResource("TileSetAtlasSource_4j4nf")
 
 [node name="SlideGate" type="Node2D"]
 script = ExtResource("1_4j4nf")
-gate_speed = 80.0
 
 [node name="RailLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAAAAAAQAAAABAAEAAAAAAAUAAAABAAIAAAA=")
