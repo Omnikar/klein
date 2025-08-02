@@ -14,7 +14,6 @@ radius = 6.0
 collision_layer = 2
 script = ExtResource("1_gkbe8")
 interact_area = NodePath("InteractArea")
-metadata/_custom_type_script = "uid://c2uav5euxlu8"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_ube80")
