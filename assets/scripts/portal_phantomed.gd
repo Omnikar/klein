@@ -4,4 +4,4 @@ class_name PortalPhantomed extends Node
 
 
 func _ready():
-	add_to_group("portal_displayed")
+	add_to_group("portal_phantomed")

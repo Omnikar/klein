@@ -2,8 +2,22 @@ class_name PortalAffected extends PortalPhantomed
 
 @export var transform_node: Node2D
 @export_range(-180, 180, 0.1, "radians_as_degrees") var reflect_axis_angle: float = PI / 2
-@export_range(-180, 180, 0.1, "radians_as_degrees") var gravity_angle: float = 0
+@export_range(-180, 180, 0.1, "radians_as_degrees") var gravity_angle: float = 0:
+	get():
+		return gravity_angle
+	set(value):
+		gravity_angle = value
 @export var flipped: bool = false
+
+@export var enabled: bool = true:
+	get():
+		return enabled
+	set(new):
+		enabled = new
+		if enabled:
+			add_to_group("portal_affected")
+		else:
+			remove_from_group("portal_affected")
 
 var last_pos: Vector2
 var this_pos: Vector2
@@ -11,7 +25,8 @@ var this_pos: Vector2
 
 func _ready():
 	reset_pos_history()
-	add_to_group("portal_affected")
+	enabled = enabled
+	super._ready()
 
 
 func reset_pos_history():
@@ -32,6 +47,7 @@ func portal_intersect(start: Vector2, end: Vector2):
 		print("this_pos: ", this_pos)
 		print("start: ", start)
 		print("end: ", end)
+		pass
 	return out
 
 

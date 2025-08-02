@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bokqtkng5s04c"]
+[gd_scene load_steps=11 format=3 uid="uid://bokqtkng5s04c"]
 
 [ext_resource type="Texture2D" uid="uid://bpoo4w8nimu2" path="res://assets/sprites/character.png" id="1_rwm0n"]
 [ext_resource type="Script" uid="uid://c3jvvfufi2k5h" path="res://assets/scripts/player_controller.gd" id="1_s027a"]
@@ -66,7 +66,11 @@ _data = {
 radius = 3.0
 height = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hqio"]
+radius = 1.0
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 6
 script = ExtResource("1_s027a")
 
 [node name="Graphics" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
@@ -98,3 +102,16 @@ shape = SubResource("CapsuleShape2D_s027a")
 script = ExtResource("4_4wcc8")
 transform_node = NodePath("..")
 phantoms = [NodePath("../Graphics/Sprite2D")]
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_7hqio")
+
+[node name="CarryPoint" type="Node2D" parent="."]
+position = Vector2(2, -3)
+
+[connection signal="area_entered" from="InteractArea" to="." method="approach_object"]
+[connection signal="area_exited" from="InteractArea" to="." method="leave_object"]

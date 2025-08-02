@@ -47,10 +47,7 @@ func _process(_delta: float):
 		queue_redraw()
 	else:
 		clear_phantoms()
-		var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
-		for obj in objects:
-			make_phantom(obj)
-		objects = get_tree().get_nodes_in_group("portal_displayed") as Array[PortalAffected]
+		var objects = get_tree().get_nodes_in_group("portal_phantomed") as Array[PortalPhantomed]
 		for obj in objects:
 			make_phantom(obj)
 
@@ -81,15 +78,15 @@ func flip(v: Vector2) -> Vector2:
 # TODO: Change scale if the portals are different sizes?
 func teleport(obj: PortalAffected, entrance: Vector2):
 	var rotate_angle = other_portal.angle - angle
-	print("rotate angle: ", rotate_angle)
+	# print("rotate angle: ", rotate_angle)
 
 	var t = (entrance - start).length() / length
 	var exit = (1 - t) * other_portal.start + t * other_portal.end
 	var exit_delta = (obj.this_pos - entrance).rotated(rotate_angle)
 	var final_pos = flip(exit_delta) + exit
-	print("t: ", t)
-	print("exit: ", exit)
-	print("final pos: ", final_pos)
+	# print("t: ", t)
+	# print("exit: ", exit)
+	# print("final pos: ", final_pos)
 
 	obj.transform_node.global_translate(final_pos - obj.this_pos)
 	obj.reset_pos_history()
@@ -100,15 +97,15 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		obj.rotate(extra_rotation)
 
 	if obj.transform_node is CharacterBody2D:
-		print("old velocity: ", obj.transform_node.velocity)
+		# print("old velocity: ", obj.transform_node.velocity)
 		var new_vel = obj.transform_node.velocity.rotated(rotate_angle)
 		obj.transform_node.velocity = flip(new_vel)
-		print("new velocity: ", obj.transform_node.velocity)
+		# print("new velocity: ", obj.transform_node.velocity)
 	elif obj.transform_node is RigidBody2D:
-		print("old velocity: ", obj.transform_node.linear_velocity)
+		# print("old velocity: ", obj.transform_node.linear_velocity)
 		var new_vel = obj.transform_node.linear_velocity.rotated(rotate_angle)
 		obj.transform_node.set_linear_velocity(flip(new_vel))
-		print("new velocity: ", obj.transform_node.linear_velocity)
+		# print("new velocity: ", obj.transform_node.linear_velocity)
 		if should_flip:
 			var new_avel = -obj.transform_node.angular_velocity
 			obj.transform_node.set_angular_velocity(new_avel)
