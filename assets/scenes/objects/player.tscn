@@ -94,7 +94,7 @@ visible = false
 position = Vector2(0, -3)
 shape = SubResource("CapsuleShape2D_s027a")
 
-[node name="PortalAffected" type="Node" parent="." node_paths=PackedStringArray("transform_node", "graphics")]
+[node name="PortalAffected" type="Node" parent="." node_paths=PackedStringArray("transform_node", "phantoms")]
 script = ExtResource("4_4wcc8")
 transform_node = NodePath("..")
-graphics = [NodePath("../Graphics/Sprite2D")]
+phantoms = [NodePath("../Graphics/Sprite2D")]

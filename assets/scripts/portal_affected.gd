@@ -1,13 +1,12 @@
-class_name PortalAffected extends PortalDisplayed
+class_name PortalAffected extends PortalPhantomed
 
 @export var transform_node: Node2D
 @export_range(-180, 180, 0.1, "radians_as_degrees") var reflect_axis_angle: float = PI / 2
+@export_range(-180, 180, 0.1, "radians_as_degrees") var gravity_angle: float = 0
+@export var flipped: bool = false
 
 var last_pos: Vector2
 var this_pos: Vector2
-
-var flipped: bool = false
-var gravity_angle: float = 0
 
 
 func _ready():

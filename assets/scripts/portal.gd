@@ -1,4 +1,5 @@
-class_name Portal extends Marker2D
+@tool
+class_name Portal extends Node2D
 
 @export var other_portal: Portal
 @export var flipped: bool = false
@@ -10,10 +11,20 @@ var angle: float
 
 var phantoms: Array[Node2D] = []
 
+var should_flip: bool:
+	get():
+		return flipped != other_portal.flipped
+
+
+func _draw():
+	if Engine.is_editor_hint():
+		draw_line(start - global_position, end - global_position, Color.YELLOW)
+
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	update_params()
+	queue_redraw()
 
 
 func update_params():
@@ -30,33 +41,38 @@ func update_params():
 
 
 func _process(_delta: float):
-	clear_phantoms()
-	var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
-	for obj in objects:
-		make_phantom(obj)
-	objects = get_tree().get_nodes_in_group("portal_displayed") as Array[PortalAffected]
-	for obj in objects:
-		make_phantom(obj)
+	update_params()
+
+	if Engine.is_editor_hint():
+		queue_redraw()
+	else:
+		clear_phantoms()
+		var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
+		for obj in objects:
+			make_phantom(obj)
+		objects = get_tree().get_nodes_in_group("portal_displayed") as Array[PortalAffected]
+		for obj in objects:
+			make_phantom(obj)
 
 
 func _physics_process(_delta: float):
-	update_params()
+	if Engine.is_editor_hint():
+		return
 
 	var objects = get_tree().get_nodes_in_group("portal_affected") as Array[PortalAffected]
 	for obj in objects:
 		var intersect = obj.portal_intersect(start, end)
 		if intersect is Vector2:
-			print("I am ", name, ". My other portal is ", other_portal.name)
-			print(obj.transform_node.name, " just passed through ", name)
+			print(obj.transform_node.name, " just passed through ", name, " to ", other_portal.name)
 			teleport(obj, intersect)
 
 
-func should_flip() -> bool:
-	return flipped != other_portal.flipped
+# func should_flip() -> bool:
+# 	return flipped != other_portal.flipped
 
 
 func flip(v: Vector2) -> Vector2:
-	if should_flip():
+	if should_flip:
 		return v.reflect((other_portal.end - other_portal.start).normalized())
 	else:
 		return v
@@ -78,7 +94,7 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 	obj.transform_node.global_translate(final_pos - obj.this_pos)
 	obj.reset_pos_history()
 	obj.rotate(rotate_angle)
-	if should_flip():
+	if should_flip:
 		var refl_axis_angle = obj.gravity_angle + obj.reflect_axis_angle
 		var extra_rotation = 2 * (other_portal.angle - refl_axis_angle)
 		obj.rotate(extra_rotation)
@@ -93,11 +109,11 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		var new_vel = obj.transform_node.linear_velocity.rotated(rotate_angle)
 		obj.transform_node.set_linear_velocity(flip(new_vel))
 		print("new velocity: ", obj.transform_node.linear_velocity)
-		if should_flip():
+		if should_flip:
 			var new_avel = -obj.transform_node.angular_velocity
 			obj.transform_node.set_angular_velocity(new_avel)
 
-	if should_flip():
+	if should_flip:
 		obj.flipped = !obj.flipped
 
 
@@ -107,8 +123,8 @@ func clear_phantoms():
 	phantoms = []
 
 
-func make_phantom(obj: PortalDisplayed):
-	for graphic in obj.graphics:
+func make_phantom(obj: PortalPhantomed):
+	for graphic in obj.phantoms:
 		var phantom = graphic.duplicate() as Node2D
 		phantom.add_to_group("portal_phantom")
 		add_child(phantom)
@@ -121,7 +137,7 @@ func make_phantom(obj: PortalDisplayed):
 		phantom.global_rotation = graphic.global_rotation + rotate_angle
 		phantom.global_position = other_portal.start + flip(out_to_phantom)
 
-		if should_flip():
+		if should_flip:
 			var extra_rotation = 2 * (other_portal.angle - phantom.global_rotation)
 			phantom.global_rotation += extra_rotation
 			phantom.scale.y *= -1

@@ -16,7 +16,7 @@ texture = SubResource("PlaceholderTexture2D_utojc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wqqwo")
 
-[node name="PortalAffectedRigidbody" type="Node" parent="." node_paths=PackedStringArray("transform_node", "graphics")]
+[node name="PortalAffectedRigidbody" type="Node" parent="." node_paths=PackedStringArray("transform_node", "phantoms")]
 script = ExtResource("1_law7l")
 transform_node = NodePath("..")
-graphics = [NodePath("../Sprite2D")]
+phantoms = [NodePath("../Sprite2D")]

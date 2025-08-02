@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 @export var player_controller: PlayerController
@@ -14,11 +15,12 @@ func _ready():
 func _process(_delta: float):
 	sprite.flip_h = player_controller.get_node("PortalAffected").flipped
 
-	if player_controller.relative_y_vel() > 0.01:
-		animation_player.play("idle")
-	elif player_controller.relative_y_vel() < -0.01:
-		animation_player.play("idle")
-	elif abs(player_controller.relative_x_vel()) > 0.001:
-		animation_player.play("move")
-	else:
-		animation_player.play("idle")
+	if not Engine.is_editor_hint():
+		if player_controller.relative_y_vel() > 0.01:
+			animation_player.play("idle")
+		elif player_controller.relative_y_vel() < -0.01:
+			animation_player.play("idle")
+		elif abs(player_controller.relative_x_vel()) > 0.001:
+			animation_player.play("move")
+		else:
+			animation_player.play("idle")

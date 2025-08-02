@@ -1,14 +1,23 @@
+@tool
 class_name PlayerController extends CharacterBody2D
 
 @export var speed = 50.0
 @export var jump_vel = 140.0
+@export var flipped = false:
+	get():
+		return $PortalAffected.flipped
+	set(value):
+		$PortalAffected.flipped = value
 
 var last_flipped: bool
 var last_direction: float = 0
+var flipped_since_last_dir_change: bool = false
 
 
 func _ready():
-	last_flipped = $PortalAffected.flipped
+	if not Engine.is_editor_hint():
+		last_flipped = $PortalAffected.flipped
+		$PortalAffected.gravity_angle = rotation
 
 
 func update_up_direction():
@@ -44,11 +53,14 @@ func relative_y_vel() -> float:
 
 
 func _physics_process(delta: float):
+	if Engine.is_editor_hint():
+		return
+
 	update_up_direction()
 
-	var flipped = $PortalAffected.flipped
 	if flipped != last_flipped:
 		last_direction *= -1
+		flipped_since_last_dir_change = true
 	last_flipped = flipped
 
 	# Add the gravity.
@@ -61,7 +73,7 @@ func _physics_process(delta: float):
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
-	if last_direction != 0 and direction != 0:
+	if last_direction != 0 and direction != 0 and flipped_since_last_dir_change:
 		direction = last_direction
 	elif cos(rotation) < -0.01:
 		direction *= -1
@@ -70,6 +82,8 @@ func _physics_process(delta: float):
 	else:
 		set_relative_x_vel(move_toward(relative_x_vel(), 0, speed))
 
+	if direction != last_direction:
+		flipped_since_last_dir_change = false
 	last_direction = direction
 
 	move_and_slide()
