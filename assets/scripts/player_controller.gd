@@ -10,8 +10,13 @@ class_name PlayerController extends CharacterBody2D
 	set(value):
 		$PortalAffected.flipped = value
 
+var vertical: bool:
+	get():
+		return abs(cos(rotation)) < 0.01
+
 var last_flipped: bool
 var last_direction: float = 0
+var last_vertical: bool
 var flipped_since_last_dir_change: bool = false
 
 # var nearby_interactables: Dictionary = {}
@@ -29,6 +34,7 @@ func _ready() -> void:
 		last_flipped = $PortalAffected.flipped
 		$PortalAffected.gravity_angle = rotation
 		carry_point_pos = $CarryPoint.position
+		last_vertical = vertical
 
 
 func update_up_direction() -> void:
@@ -81,7 +87,10 @@ func handle_movement(delta: float) -> void:
 	if flipped != last_flipped:
 		last_direction *= -1
 		flipped_since_last_dir_change = true
+	if vertical != last_vertical:
+		flipped_since_last_dir_change = true
 	last_flipped = flipped
+	last_vertical = vertical
 
 	# Add the gravity.
 	if not is_on_floor():

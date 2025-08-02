@@ -1,8 +1,12 @@
 @tool
 class_name Portal extends Node2D
 
+## The portal to send to
 @export var other_portal: Portal
+## Cause this portal to mirror objects coming through it if this setting is different between the sending and receiving portals
 @export var flipped: bool = false
+## Swap the endpoints of the portal, effectively rotating it 180°
+@export var reorient: bool = false
 
 var start: Vector2
 var end: Vector2
@@ -30,7 +34,7 @@ func _ready() -> void:
 func update_params() -> void:
 	var start_ = global_position
 	var end_ = $Endpoint.global_position
-	if flipped:
+	if flipped != reorient:
 		start = end_
 		end = start_
 	else:
