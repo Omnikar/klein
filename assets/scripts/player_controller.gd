@@ -72,6 +72,7 @@ func relative_y_vel() -> float:
 
 func _process(_delta: float) -> void:
 	$InteractIndicator.visible = not nearby_carryables.is_empty() and carry == null
+	$InteractIndicator.global_rotation = 0
 
 
 func _physics_process(delta: float) -> void:
