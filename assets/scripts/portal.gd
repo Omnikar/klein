@@ -16,18 +16,18 @@ var should_flip: bool:
 		return flipped != other_portal.flipped
 
 
-func _draw():
+func _draw() -> void:
 	if Engine.is_editor_hint():
 		draw_line(start - global_position, end - global_position, Color.YELLOW)
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	update_params()
 	queue_redraw()
 
 
-func update_params():
+func update_params() -> void:
 	var start_ = global_position
 	var end_ = $Endpoint.global_position
 	if flipped:
@@ -40,7 +40,7 @@ func update_params():
 	angle = (end - start).angle()
 
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	update_params()
 
 	if Engine.is_editor_hint():
@@ -52,7 +52,7 @@ func _process(_delta: float):
 			make_phantom(obj)
 
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -76,7 +76,7 @@ func flip(v: Vector2) -> Vector2:
 
 
 # TODO: Change scale if the portals are different sizes?
-func teleport(obj: PortalAffected, entrance: Vector2):
+func teleport(obj: PortalAffected, entrance: Vector2) -> void:
 	var rotate_angle = other_portal.angle - angle
 	# print("rotate angle: ", rotate_angle)
 
@@ -114,13 +114,13 @@ func teleport(obj: PortalAffected, entrance: Vector2):
 		obj.flipped = !obj.flipped
 
 
-func clear_phantoms():
+func clear_phantoms() -> void:
 	for phantom in phantoms:
 		phantom.queue_free()
 	phantoms = []
 
 
-func make_phantom(obj: PortalPhantomed):
+func make_phantom(obj: PortalPhantomed) -> void:
 	for graphic in obj.phantoms:
 		var phantom = graphic.duplicate() as Node2D
 		phantom.add_to_group("portal_phantom")

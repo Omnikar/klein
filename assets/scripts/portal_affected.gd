@@ -23,23 +23,23 @@ var last_pos: Vector2
 var this_pos: Vector2
 
 
-func _ready():
+func _ready() -> void:
 	reset_pos_history()
 	enabled = enabled
 	super._ready()
 
 
-func reset_pos_history():
+func reset_pos_history() -> void:
 	last_pos = transform_node.global_position
 	this_pos = transform_node.global_position
 
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float) -> void:
 	last_pos = this_pos
 	this_pos = transform_node.global_position
 
 
-func portal_intersect(start: Vector2, end: Vector2):
+func portal_intersect(start: Vector2, end: Vector2) -> Variant:
 	# return Geometry2D.segment_intersects_segment(last_pos, this_pos, start, end)
 	var out = Geometry2D.segment_intersects_segment(last_pos, this_pos, start, end)
 	if not out == null:
@@ -51,11 +51,11 @@ func portal_intersect(start: Vector2, end: Vector2):
 	return out
 
 
-func set_rotation(rot: float):
+func set_rotation(rot: float) -> void:
 	var diff = rot - gravity_angle
 	rotate(diff)
 
 
-func rotate(rot: float):
+func rotate(rot: float) -> void:
 	gravity_angle += rot
 	transform_node.rotation += rot

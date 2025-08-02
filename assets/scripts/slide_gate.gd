@@ -9,17 +9,17 @@ var open_pos: Vector2
 var closed_pos: Vector2
 
 
-func _ready():
+func _ready() -> void:
 	teleport_gate()
 
 
-func _process(_delta: float):
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		teleport_gate()
 		queue_redraw()
 
 
-func teleport_gate():
+func teleport_gate() -> void:
 	open_pos = $RailLayer.position
 	closed_pos = $ClosedPos.position
 	if open:
@@ -28,7 +28,7 @@ func teleport_gate():
 		$GateLayer.position = closed_pos
 
 
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -43,5 +43,5 @@ func _physics_process(delta: float):
 		$GateLayer.position += to_target.normalized() * max_move_dist
 
 
-func set_open(new_open: bool):
+func set_open(new_open: bool) -> void:
 	open = new_open

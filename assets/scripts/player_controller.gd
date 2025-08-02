@@ -21,14 +21,14 @@ var carry_grav_dir_diffs: Array = []
 var carry_flip_diffs: Array = []
 
 
-func _ready():
+func _ready() -> void:
 	if not Engine.is_editor_hint():
 		last_flipped = $PortalAffected.flipped
 		$PortalAffected.gravity_angle = rotation
 		carry_point_pos = $CarryPoint.position
 
 
-func update_up_direction():
+func update_up_direction() -> void:
 	up_direction = Vector2.UP.rotated(rotation)
 
 
@@ -41,13 +41,13 @@ var down: Vector2:
 		return Vector2.DOWN.rotated(rotation)
 
 
-func set_relative_x_vel(vel: float):
+func set_relative_x_vel(vel: float) -> void:
 	var y_part = velocity.project(down)
 	var x_part = vel * right
 	velocity = x_part + y_part
 
 
-func set_relative_y_vel(vel: float):
+func set_relative_y_vel(vel: float) -> void:
 	var x_part = velocity.project(right)
 	var y_part = vel * down
 	velocity = x_part + y_part
@@ -61,7 +61,7 @@ func relative_y_vel() -> float:
 	return velocity.dot(down)
 
 
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -70,7 +70,7 @@ func _physics_process(delta: float):
 	handle_carry()
 
 
-func handle_movement(delta: float):
+func handle_movement(delta: float) -> void:
 	if flipped != last_flipped:
 		last_direction *= -1
 		flipped_since_last_dir_change = true
@@ -103,7 +103,7 @@ func handle_movement(delta: float):
 
 
 # FIXME: Doesn't correctly handle rotation/flipping of carried object
-func handle_carry():
+func handle_carry() -> void:
 	$CarryPoint.position = carry_point_pos.reflect(Vector2.DOWN) if flipped else carry_point_pos
 	if carry != null:
 		carry.position = Vector2.ZERO
@@ -150,13 +150,13 @@ func handle_carry():
 			carry_flip_diffs = []
 
 
-func approach_object(obj: Node2D):
+func approach_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables[carryable] = null
 
 
-func leave_object(obj: Node2D):
+func leave_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables.erase(carryable)
@@ -166,6 +166,6 @@ func find_portal_affecteds(parent: Node) -> Array:
 	return parent.find_children("*", "PortalAffected") as Array[PortalAffected]
 
 
-func set_portal_affecteds_enabled(parent: Node, enabled: bool):
+func set_portal_affecteds_enabled(parent: Node, enabled: bool) -> void:
 	for portal_affected in find_portal_affecteds(parent):
 		portal_affected.enabled = enabled
