@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3l580qijmvv5"]
+
+[ext_resource type="Texture2D" uid="uid://glm3w57n87lh" path="res://assets/sprites/switch.png" id="1_mpeh0"]
+
+[node name="Switch" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_mpeh0")
+region_enabled = true
+region_rect = Rect2(8, 0, 4, 6)
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture = ExtResource("1_mpeh0")
+region_enabled = true
+region_rect = Rect2(0, 0, 4, 6)

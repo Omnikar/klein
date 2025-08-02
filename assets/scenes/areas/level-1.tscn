@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=4 uid="uid://np0s4oue8215"]
+[gd_scene load_steps=9 format=4 uid="uid://0pgfnpeyfyf6"]
 
-[ext_resource type="Texture2D" uid="uid://3m1tx211782i" path="res://assets/sprites/ground-tileset.png" id="1_5v30d"]
-[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="2_jkso3"]
-[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="3_03k5c"]
-[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="4_s886w"]
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_4jr7j"]
+[ext_resource type="Texture2D" uid="uid://3m1tx211782i" path="res://assets/sprites/ground-tileset.png" id="1_h3n8e"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="2_s550u"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="2_yxk87"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="3_yxk87"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="4_ngxnc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376kr"]
-texture = ExtResource("1_5v30d")
+texture = ExtResource("1_h3n8e")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -395,25 +397,25 @@ terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_376kr")
 
-[node name="TestScene" type="Node2D"]
+[node name="Level" type="Node2D"]
+script = ExtResource("1_4jr7j")
+level_num = 1
 
 [node name="Environment" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAEAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAAsAAAACAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAAsAAAACAAEAAAAHAAAAAAACAAMAAAAHAP//AAACAAEAAAAGAAwAAAACAAMAAAAGAAsAAAAEAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAAFAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAAsAAAACAAEAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAADAAsAAAACAAEAAAACAAwAAAACAAMAAAACAAsAAAACAAEAAAABAAwAAAACAAMAAAABAAsAAAACAAEAAAAAAAwAAAACAAMAAAAAAAsAAAACAAEAAAAAAAAAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wAAAAABAAMAAAD/////AAABAAEAAAADAP//AAACAAEAAAADAAAAAAACAAMAAAAIAAsAAAACAAEAAAAIAAwAAAACAAMAAAABAP//AAACAAEAAAACAP//AAACAAEAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAABAAAAAAACAAMAAAACAAAAAAACAAMAAAAJAAsAAAACAAEAAAAKAAsAAAACAAEAAAAFAAoAAAABAAIAAAAFAAkAAAABAAIAAAAGAAkAAAADAAIAAAAGAAoAAAADAAIAAAAFAAgAAAABAAEAAAAGAAgAAAADAAEAAAA=")
+tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAEAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAAsAAAACAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAAsAAAACAAEAAAAHAAAAAAACAAMAAAAHAP//AAACAAEAAAAGAAwAAAACAAMAAAAGAAsAAAAEAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAAFAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAAsAAAACAAEAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAADAAsAAAACAAEAAAACAAwAAAACAAMAAAACAAsAAAACAAEAAAABAAwAAAACAAMAAAABAAsAAAACAAEAAAAAAAwAAAACAAMAAAAAAAsAAAACAAEAAAAAAAAAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wAAAAABAAMAAAD/////AAABAAEAAAADAP//AAACAAEAAAADAAAAAAACAAMAAAAIAAsAAAACAAEAAAAIAAwAAAACAAMAAAABAP//AAACAAEAAAACAP//AAACAAEAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAABAAAAAAACAAMAAAACAAAAAAACAAMAAAAJAAsAAAACAAEAAAAKAAsAAAACAAEAAAAFAAoAAAABAAIAAAAFAAkAAAABAAEAAAAGAAkAAAADAAEAAAAGAAoAAAADAAIAAAA=")
 tile_set = SubResource("TileSet_abcw6")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-zoom = Vector2(8.333, 8.333)
+[node name="GameCamera" parent="." instance=ExtResource("2_yxk87")]
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jkso3")]
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_s550u")]
 other_portal = NodePath("../RightPortal")
 
 [node name="Endpoint" parent="Portals/LeftPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jkso3")]
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_s550u")]
 position = Vector2(96, 0)
 other_portal = NodePath("../LeftPortal")
 flipped = true
@@ -421,13 +423,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/RightPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jkso3")]
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_s550u")]
 other_portal = NodePath("../BottomPortal")
 
 [node name="Endpoint" parent="Portals/TopPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jkso3")]
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_s550u")]
 position = Vector2(0, 96)
 other_portal = NodePath("../TopPortal")
 flipped = true
@@ -435,11 +437,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="Goal" parent="." instance=ExtResource("3_03k5c")]
+[node name="Goal" parent="." instance=ExtResource("3_yxk87")]
 position = Vector2(72, 80)
 
-[node name="Player" parent="." instance=ExtResource("4_s886w")]
+[node name="Player" parent="." instance=ExtResource("4_ngxnc")]
 position = Vector2(16, 88)
+
+[connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
 
 [editable path="Portals/LeftPortal"]
 [editable path="Portals/RightPortal"]

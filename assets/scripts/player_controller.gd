@@ -3,6 +3,7 @@ class_name PlayerController extends CharacterBody2D
 
 @export var speed = 50.0
 @export var jump_vel = 140.0
+@export var max_y_speed = 500.0
 @export var flipped = false:
 	get():
 		return $PortalAffected.flipped
@@ -12,6 +13,8 @@ class_name PlayerController extends CharacterBody2D
 var last_flipped: bool
 var last_direction: float = 0
 var flipped_since_last_dir_change: bool = false
+
+# var nearby_interactables: Dictionary = {}
 
 var carry_point_pos: Vector2
 var nearby_carryables: Dictionary = {}
@@ -61,6 +64,10 @@ func relative_y_vel() -> float:
 	return velocity.dot(down)
 
 
+func _process(_delta: float) -> void:
+	$InteractIndicator.visible = not nearby_carryables.is_empty() and carry == null
+
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -83,6 +90,10 @@ func handle_movement(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_relative_y_vel(-jump_vel)
+
+	var y_vel = relative_y_vel()
+	if abs(y_vel) > max_y_speed:
+		set_relative_y_vel(sign(y_vel) * max_y_speed)
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
@@ -154,12 +165,18 @@ func approach_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables[carryable] = null
+	# var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable or n is Carryable)
+	# if interactable != null:
+	# 	nearby_interactables[interactable] = null
 
 
 func leave_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables.erase(carryable)
+	# var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable or n is Carryable)
+	# if interactable != null:
+	# 	nearby_interactables.erase(interactable)
 
 
 func find_portal_affecteds(parent: Node) -> Array:

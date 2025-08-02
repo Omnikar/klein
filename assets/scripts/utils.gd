@@ -8,3 +8,7 @@ func find_ancestor(start: Node, condition: Callable) -> Variant:
 		if current == null:
 			return null
 	return current
+
+
+func load_level(level_num: int) -> void:
+	get_tree().change_scene_to_file("res://assets/scenes/areas/level-%d.tscn" % level_num)

@@ -18,6 +18,7 @@ scale = Vector2(5.09, 5.09)
 texture = SubResource("CanvasTexture_wc5yi")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

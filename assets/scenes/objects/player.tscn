@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bokqtkng5s04c"]
+[gd_scene load_steps=12 format=3 uid="uid://bokqtkng5s04c"]
 
 [ext_resource type="Texture2D" uid="uid://bpoo4w8nimu2" path="res://assets/sprites/character.png" id="1_rwm0n"]
 [ext_resource type="Script" uid="uid://c3jvvfufi2k5h" path="res://assets/scripts/player_controller.gd" id="1_s027a"]
 [ext_resource type="Script" uid="uid://ckt7lu1tc4g4v" path="res://assets/scripts/player_animator.gd" id="2_14505"]
 [ext_resource type="Script" uid="uid://bl8vo6lvw7xwa" path="res://assets/scripts/portal_affected.gd" id="4_4wcc8"]
+[ext_resource type="Texture2D" uid="uid://btgwnnv40bnds" path="res://assets/sprites/e-indicator.png" id="5_4faiu"]
 
 [sub_resource type="Animation" id="Animation_14505"]
 length = 0.001
@@ -112,6 +113,12 @@ shape = SubResource("CircleShape2D_7hqio")
 
 [node name="CarryPoint" type="Node2D" parent="."]
 position = Vector2(2, -3)
+
+[node name="InteractIndicator" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -9)
+scale = Vector2(0.666667, 0.666667)
+texture = ExtResource("5_4faiu")
 
 [connection signal="area_entered" from="InteractArea" to="." method="approach_object"]
 [connection signal="area_exited" from="InteractArea" to="." method="leave_object"]

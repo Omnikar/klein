@@ -28,6 +28,5 @@ func _process(delta: float) -> void:
 	$Sprite2D.scale = base_scale * (1 + bob_diff)
 
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	print(body.name, " just reached the goal")
+func _on_area_2d_body_entered(_body: Node2D) -> void:
 	goal_reached.emit()

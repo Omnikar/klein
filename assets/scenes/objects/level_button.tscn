@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cb6ghoihxcria"]
+
+[ext_resource type="Theme" uid="uid://cd3cg4gssehva" path="res://assets/misc/ui-theme.tres" id="1_25ej7"]
+[ext_resource type="Script" uid="uid://fag45t3ad5i0" path="res://assets/scripts/level_button.gd" id="1_eqc68"]
+
+[node name="LevelButton" type="Control"]
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_eqc68")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_25ej7")
+text = "0"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
