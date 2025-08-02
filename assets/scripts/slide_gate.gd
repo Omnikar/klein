@@ -1,7 +1,7 @@
 @tool
 class_name SlideGate extends Node2D
 
-@export var open_speed: float = 10.0
+@export var open_speed: float = 40.0
 @export var close_speed: float = 40.0
 @export var open: bool = false
 
@@ -22,10 +22,7 @@ func _process(_delta: float) -> void:
 func teleport_gate() -> void:
 	open_pos = $RailLayer.position
 	closed_pos = $ClosedPos.position
-	if open:
-		$GateLayer.position = open_pos
-	else:
-		$GateLayer.position = closed_pos
+	$GateLayer.position = open_pos if open else closed_pos
 
 
 func _physics_process(delta: float) -> void:

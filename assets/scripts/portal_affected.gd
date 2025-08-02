@@ -43,10 +43,10 @@ func portal_intersect(start: Vector2, end: Vector2) -> Variant:
 	# return Geometry2D.segment_intersects_segment(last_pos, this_pos, start, end)
 	var out = Geometry2D.segment_intersects_segment(last_pos, this_pos, start, end)
 	if not out == null:
-		print("last_pos: ", last_pos)
-		print("this_pos: ", this_pos)
-		print("start: ", start)
-		print("end: ", end)
+		# print("last_pos: ", last_pos)
+		# print("this_pos: ", this_pos)
+		# print("start: ", start)
+		# print("end: ", end)
 		pass
 	return out
 

@@ -60,7 +60,7 @@ func _physics_process(_delta: float) -> void:
 	for obj in objects:
 		var intersect = obj.portal_intersect(start, end)
 		if intersect is Vector2:
-			print(obj.transform_node.name, " just passed through ", name, " to ", other_portal.name)
+			# print(obj.transform_node.name, " just passed through ", name, " to ", other_portal.name)
 			teleport(obj, intersect)
 
 

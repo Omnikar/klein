@@ -1,15 +1,15 @@
-[gd_scene load_steps=10 format=4 uid="uid://dk7dljr7yuy7d"]
+[gd_scene load_steps=10 format=4 uid="uid://begid62h1r44x"]
 
-[ext_resource type="Texture2D" uid="uid://3m1tx211782i" path="res://assets/sprites/ground-tileset.png" id="1_41fjk"]
-[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="2_thotb"]
-[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="3_wqqwo"]
-[ext_resource type="PackedScene" uid="uid://b550qq4mofkts" path="res://assets/scenes/objects/pressure_plate.tscn" id="4_llb5w"]
-[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="4_utojc"]
-[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="5_wc5yi"]
-[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="7_semc3"]
+[ext_resource type="Texture2D" uid="uid://3m1tx211782i" path="res://assets/sprites/ground-tileset.png" id="1_ydjiv"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="2_jruc1"]
+[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="3_4bbd1"]
+[ext_resource type="PackedScene" uid="uid://b550qq4mofkts" path="res://assets/scenes/objects/pressure_plate.tscn" id="4_eqht2"]
+[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="5_fdis0"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="6_jctr6"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="7_v7i0w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376kr"]
-texture = ExtResource("1_41fjk")
+texture = ExtResource("1_ydjiv")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -401,7 +401,7 @@ sources/0 = SubResource("TileSetAtlasSource_376kr")
 [node name="TestScene" type="Node2D"]
 
 [node name="Environment" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAEAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAAsAAAACAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIAAAAAAAEAAAAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAAsAAAACAAEAAAAHAAAAAAACAAIAAAAHAP//AAACAAEAAAAGAAwAAAACAAMAAAAGAAsAAAACAAEAAAAGAAAAAAAFAAAAAAAGAP//AAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAAsAAAACAAEAAAAEAAAAAAACAAMAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAADAAsAAAACAAEAAAACAAwAAAACAAMAAAACAAsAAAACAAEAAAABAAwAAAACAAMAAAABAAsAAAACAAEAAAAAAAwAAAACAAMAAAAAAAsAAAACAAEAAAAAAAAAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wAAAAABAAMAAAD/////AAABAAEAAAADAP//AAACAAEAAAADAAAAAAACAAMAAAAIAAsAAAACAAEAAAAIAAwAAAACAAMAAAABAP//AAACAAEAAAACAP//AAACAAEAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAABAAAAAAACAAMAAAACAAAAAAACAAMAAAAJAAsAAAACAAEAAAAKAAsAAAACAAEAAAAMAAMAAAADAAEAAAAKAAMAAAACAAEAAAAJAAMAAAADAAQAAAAIAAMAAAAEAAYAAAAIAAIAAAABAAQAAAAIAAEAAAADAAIAAAALAAMAAAACAAEAAAAAAAgAAAACAAMAAAD//wgAAAABAAMAAAAAAAcAAAACAAIAAAD//wcAAAABAAIAAAAAAAYAAAACAAEAAAD//wYAAAABAAEAAAAHAAIAAAABAAMAAAAGAAEAAAABAAMAAAAHAAEAAAAFAAAAAAALAAQAAAACAAIAAAAMAAQAAAADAAIAAAALAAUAAAACAAMAAAAMAAUAAAADAAMAAAAJAAQAAAABAAMAAAAKAAQAAAAFAAAAAAAKAAUAAAABAAMAAAABAAYAAAACAAEAAAABAAcAAAAEAAAAAAABAAgAAAADAAMAAAACAAYAAAACAAEAAAADAAYAAAACAAEAAAADAAcAAAACAAMAAAACAAcAAAACAAMAAAAEAAYAAAADAAEAAAAEAAcAAAADAAMAAAA=")
+tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAgAAAADAAIAAAAMAAcAAAADAAIAAAAMAAYAAAADAAIAAAAMAAUAAAADAAIAAAAMAAQAAAADAAIAAAAMAAMAAAADAAEAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAABAAMAAAALAAsAAAABAAIAAAALAAoAAAABAAIAAAALAAgAAAABAAIAAAALAAcAAAAFAAAAAAALAAYAAAAFAAEAAAALAAUAAAABAAIAAAALAAQAAAABAAIAAAALAAMAAAABAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAAsAAAACAAEAAAAHAAAAAAACAAMAAAAHAP//AAACAAEAAAAGAAwAAAACAAMAAAAGAAsAAAACAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAAsAAAACAAEAAAAEAAAAAAAEAAAAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAADAAsAAAACAAEAAAACAAwAAAACAAMAAAACAAsAAAACAAEAAAABAAwAAAACAAMAAAABAAsAAAACAAEAAAAAAAwAAAACAAMAAAAAAAsAAAACAAEAAAAAAAgAAAADAAMAAAAAAAcAAAAGAAMAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAAEAAAAAAAAAAIAAAAEAAEAAAAAAAEAAAADAAIAAAAAAAAAAAADAAIAAAAAAP//AAADAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wgAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAD//wEAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAALAAkAAAABAAIAAAAMAAkAAAADAAIAAAAMAAoAAAADAAIAAAAFAAUAAAADAAAAAAAHAAIAAAAAAAEAAAAEAAEAAAADAAMAAAADAAEAAAAAAAQAAAABAAMAAAACAAMAAAACAAMAAAADAAMAAAABAAcAAAACAAAAAAACAAcAAAADAAAAAAAFAAkAAAADAAAAAAAEAAkAAAABAAAAAAAEAAUAAAABAAAAAAAHAAMAAAAAAAMAAAACAAIAAAACAAQAAAABAAIAAAACAAEAAAAJAAYAAAABAAEAAAAKAAYAAAACAAEAAAAJAAcAAAAAAAQAAAAJAAgAAAAAAAMAAAADAP//AAABAAEAAAADAAAAAAABAAIAAAAIAAsAAAADAAEAAAAIAAwAAAADAAMAAAADAAIAAAAGAAYAAAAKAAcAAAACAAMAAAA=")
 tile_set = SubResource("TileSet_abcw6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -410,13 +410,13 @@ zoom = Vector2(8.333, 8.333)
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("3_wqqwo")]
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
 other_portal = NodePath("../RightPortal")
 
 [node name="Endpoint" parent="Portals/LeftPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("3_wqqwo")]
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
 position = Vector2(96, 0)
 other_portal = NodePath("../LeftPortal")
 flipped = true
@@ -424,13 +424,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/RightPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("3_wqqwo")]
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
 other_portal = NodePath("../BottomPortal")
 
 [node name="Endpoint" parent="Portals/TopPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("3_wqqwo")]
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
 position = Vector2(0, 96)
 other_portal = NodePath("../TopPortal")
 flipped = true
@@ -438,30 +438,32 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="Goal" parent="." instance=ExtResource("7_semc3")]
-position = Vector2(80, 16)
-
-[node name="SlideGate" parent="." instance=ExtResource("4_utojc")]
-position = Vector2(0, 56)
+[node name="SlideGate" parent="." instance=ExtResource("3_4bbd1")]
+position = Vector2(56, 96)
+rotation = -1.5708
 
 [node name="RailLayer" parent="SlideGate" index="0"]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAIAAAA=")
 
 [node name="GateLayer" parent="SlideGate" index="1"]
-position = Vector2(0, 16)
+position = Vector2(3.49691e-07, 16)
 tile_map_data = PackedByteArray("AAAAAAEAAAAAAAEAAAAAAAAAAAAAAAEAAAA=")
 
 [node name="ClosedPos" parent="SlideGate" index="2"]
-position = Vector2(0, 16)
+position = Vector2(3.49691e-07, 16)
 
-[node name="PressurePlate" parent="." instance=ExtResource("4_llb5w")]
-position = Vector2(44, 88)
+[node name="PressurePlate" parent="." instance=ExtResource("4_eqht2")]
+position = Vector2(84, 64)
+rotation = 3.14159
 color = Color(0.921569, 0.168627, 0.176471, 1)
 
-[node name="Box" parent="." instance=ExtResource("5_wc5yi")]
-position = Vector2(28, 46)
+[node name="Box" parent="." instance=ExtResource("5_fdis0")]
+position = Vector2(80, 46)
 
-[node name="Player" parent="." instance=ExtResource("2_thotb")]
+[node name="Goal" parent="." instance=ExtResource("6_jctr6")]
+position = Vector2(16, 8)
+
+[node name="Player" parent="." instance=ExtResource("7_v7i0w")]
 position = Vector2(16, 88)
 
 [connection signal="plate_updated" from="PressurePlate" to="SlideGate" method="set_open"]
