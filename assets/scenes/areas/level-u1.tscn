@@ -402,7 +402,7 @@ tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAgAAAADAAI
 tile_set = SubResource("TileSet_abcw6")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(48, 48)
+anchor_mode = 0
 zoom = Vector2(8.333, 8.333)
 
 [node name="Portals" type="Node" parent="."]
