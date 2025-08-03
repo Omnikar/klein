@@ -116,6 +116,7 @@ position = Vector2(2, -3)
 
 [node name="InteractIndicator" type="Sprite2D" parent="."]
 visible = false
+z_index = 5
 position = Vector2(8, -9)
 scale = Vector2(0.666667, 0.666667)
 texture = ExtResource("5_4faiu")
