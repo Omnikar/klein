@@ -23,7 +23,7 @@ var last_direction: float = 0
 var last_vertical: bool
 var flipped_since_last_dir_change: bool = false
 
-# var nearby_interactables: Dictionary = {}
+var nearby_interactables: Dictionary = {}
 
 var carry_point_pos: Vector2
 var nearby_carryables: Dictionary = {}
@@ -82,8 +82,12 @@ func relative_y_vel() -> float:
 
 
 func _process(_delta: float) -> void:
-	$InteractIndicator.visible = not nearby_carryables.is_empty() and carry == null
-	$InteractIndicator.global_rotation = 0
+	if not Engine.is_editor_hint():
+		$InteractIndicator.visible = (
+			(not nearby_carryables.is_empty() and carry == null)
+			or not nearby_interactables.is_empty()
+		)
+		$InteractIndicator.global_rotation = 0
 
 
 func _physics_process(delta: float) -> void:
@@ -92,7 +96,7 @@ func _physics_process(delta: float) -> void:
 
 	update_up_direction()
 	handle_movement(delta)
-	handle_carry()
+	handle_interact()
 
 
 func handle_movement(delta: float) -> void:
@@ -158,7 +162,7 @@ func handle_movement(delta: float) -> void:
 
 
 # FIXME: Doesn't correctly handle rotation/flipping of carried object
-func handle_carry() -> void:
+func handle_interact() -> void:
 	$CarryPoint.position = carry_point_pos.reflect(Vector2.DOWN) if flipped else carry_point_pos
 	if carry != null:
 		carry.position = Vector2.ZERO
@@ -167,63 +171,72 @@ func handle_carry() -> void:
 	# 	carry.scale.y *= -1
 
 	if Input.is_action_just_pressed("interact"):
-		if carry == null:
-			if not nearby_carryables.is_empty():
-				carry = nearby_carryables.keys()[0]
-				carry_orig_parent = carry.get_parent()
-				carry_grav_dir_diffs = find_portal_affecteds(carry).map(
-					func(pa): return pa.gravity_angle - $PortalAffected.gravity_angle
-				)
-				carry_flip_diffs = find_portal_affecteds(carry).map(
-					func(pa): return pa.flipped != flipped
-				)
-				var carry_momentum = carry.linear_velocity * carry.mass
-				var own_momentum = velocity * mass
-				velocity = (own_momentum + carry_momentum) / total_mass
-				set_portal_affecteds_enabled(carry, false)
-				carry.reparent($CarryPoint)
-				carry.position = Vector2.ZERO
-				carry.freeze = true
-		else:
-			carry.reparent(carry_orig_parent)
-			# carry.set_linear_velocity(velocity * 0.5)
-			carry.set_linear_velocity(Vector2.ZERO)
-			carry.set_angular_velocity(0)
-			set_portal_affecteds_enabled(carry, true)
-			var portal_affecteds = find_portal_affecteds(carry)
-			for i in range(portal_affecteds.size()):
-				portal_affecteds[i].last_pos = global_position
-				portal_affecteds[i].this_pos = carry.global_position
-				var grav_dir_diff = carry_grav_dir_diffs[i]
-				var flip = flipped != carry_flip_diffs[i]
-				# I think this is right, not sure
-				if flip:
-					grav_dir_diff *= -1
-				portal_affecteds[i].gravity_angle = $PortalAffected.gravity_angle + grav_dir_diff
-				portal_affecteds[i].flipped = flip
-			carry.freeze = false
-			carry = null
-			carry_orig_parent = null
-			carry_grav_dir_diffs = []
-			carry_flip_diffs = []
+		if carry == null and not nearby_carryables.is_empty():
+			pickup(nearby_carryables.keys()[0])
+		elif not nearby_interactables.is_empty():
+			nearby_interactables.keys()[0].interact()
+		elif carry != null:
+			drop_carry()
+
+
+func pickup(obj) -> void:
+	carry = obj
+	carry_orig_parent = carry.get_parent()
+	carry_grav_dir_diffs = find_portal_affecteds(carry).map(
+		func(pa): return pa.gravity_angle - $PortalAffected.gravity_angle
+	)
+	carry_flip_diffs = find_portal_affecteds(carry).map(func(pa): return pa.flipped != flipped)
+	var carry_momentum = carry.linear_velocity * carry.mass
+	var own_momentum = velocity * mass
+	velocity = (own_momentum + carry_momentum) / total_mass
+	set_portal_affecteds_enabled(carry, false)
+	carry.reparent($CarryPoint)
+	carry.position = Vector2.ZERO
+	carry.freeze = true
+
+
+func drop_carry() -> void:
+	carry.reparent(carry_orig_parent)
+	# carry.set_linear_velocity(velocity * 0.5)
+	carry.set_linear_velocity(Vector2.ZERO)
+	carry.set_angular_velocity(0)
+	set_portal_affecteds_enabled(carry, true)
+	var portal_affecteds = find_portal_affecteds(carry)
+	for i in range(portal_affecteds.size()):
+		portal_affecteds[i].last_pos = global_position
+		portal_affecteds[i].this_pos = carry.global_position
+		var grav_dir_diff = carry_grav_dir_diffs[i]
+		var flip = flipped != carry_flip_diffs[i]
+		# I think this is right, not sure
+		if flip:
+			grav_dir_diff *= -1
+		portal_affecteds[i].gravity_angle = $PortalAffected.gravity_angle + grav_dir_diff
+		portal_affecteds[i].flipped = flip
+	carry.freeze = false
+	carry = null
+	carry_orig_parent = null
+	carry_grav_dir_diffs = []
+	carry_flip_diffs = []
 
 
 func approach_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables[carryable] = null
-	# var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable or n is Carryable)
-	# if interactable != null:
-	# 	nearby_interactables[interactable] = null
+
+	var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable)
+	if interactable != null:
+		nearby_interactables[interactable] = null
 
 
 func leave_object(obj: Node2D) -> void:
 	var carryable = Utils.find_ancestor(obj, func(n): return n is Carryable)
 	if carryable != null:
 		nearby_carryables.erase(carryable)
-	# var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable or n is Carryable)
-	# if interactable != null:
-	# 	nearby_interactables.erase(interactable)
+
+	var interactable = Utils.find_ancestor(obj, func(n): return n is Interactable)
+	if interactable != null:
+		nearby_interactables.erase(interactable)
 
 
 func find_portal_affecteds(parent: Node) -> Array:
