@@ -8,7 +8,7 @@
 size = Vector2(4, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gkbe8"]
-radius = 4.8
+radius = 5.0
 
 [node name="Box" type="RigidBody2D" node_paths=PackedStringArray("interact_area")]
 collision_layer = 2
