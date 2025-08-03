@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb4r4gkamrhnn"]
 
 [ext_resource type="Script" uid="uid://83kyv7icbomr" path="res://assets/scripts/rotate_gate.gd" id="1_ocge4"]
-[ext_resource type="Texture2D" uid="uid://cfn7x2qwkx2nm" path="res://assets/sprites/gate.png" id="1_ukyur"]
+[ext_resource type="Texture2D" uid="uid://nk3w02q8icje" path="res://assets/sprites/gate.png" id="1_ukyur"]
 [ext_resource type="TileSet" uid="uid://dj6pd130tvip4" path="res://assets/tilesets/slide-gate-tiles.tres" id="2_ocge4"]
 
 [node name="RotateGate" type="Node2D"]
