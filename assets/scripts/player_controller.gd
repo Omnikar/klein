@@ -9,6 +9,7 @@ class_name PlayerController extends CharacterBody2D
 		return $PortalAffected.flipped
 	set(value):
 		$PortalAffected.flipped = value
+@export var mass = 7
 
 var vertical: bool:
 	get():
@@ -27,6 +28,13 @@ var carry: Carryable = null
 var carry_orig_parent: Node = null
 var carry_grav_dir_diffs: Array = []
 var carry_flip_diffs: Array = []
+
+var total_mass: float:
+	get():
+		if carry == null:
+			return mass
+		else:
+			return mass + carry.mass
 
 
 func _ready() -> void:
@@ -95,11 +103,23 @@ func handle_movement(delta: float) -> void:
 
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity().rotated(rotation) * delta
+		# velocity += get_gravity().rotated(rotation) * delta
+		var total_gravity = get_gravity().rotated(rotation) * mass
+		if carry != null:
+			# var pa = find_portal_affecteds(carry)
+			# if not pa.is_empty():
+			# 	var carry_gravity = carry.mass * get_gravity().rotated(pa[0].gravity_angle)
+			# 	total_gravity += carry_gravity
+			for dir_diff in carry_grav_dir_diffs:
+				var carry_gravity = carry.mass * get_gravity().rotated(rotation + dir_diff)
+				total_gravity += carry_gravity
+		velocity += total_gravity * delta / total_mass
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_relative_y_vel(-jump_vel)
+		# var momentum = -jump_vel * mass
+		# set_relative_y_vel(momentum / total_mass)
 
 	var y_vel = relative_y_vel()
 	if abs(y_vel) > max_y_speed:
@@ -113,6 +133,8 @@ func handle_movement(delta: float) -> void:
 		direction *= -1
 	if direction:
 		set_relative_x_vel(direction * speed)
+		# var momentum = direction * speed * mass
+		# set_relative_x_vel(momentum / total_mass)
 	else:
 		set_relative_x_vel(move_toward(relative_x_vel(), 0, speed))
 
@@ -143,6 +165,9 @@ func handle_carry() -> void:
 				carry_flip_diffs = find_portal_affecteds(carry).map(
 					func(pa): return pa.flipped != flipped
 				)
+				var carry_momentum = carry.linear_velocity * carry.mass
+				var own_momentum = velocity * mass
+				velocity = (own_momentum + carry_momentum) / total_mass
 				set_portal_affecteds_enabled(carry, false)
 				carry.reparent($CarryPoint)
 				carry.position = Vector2.ZERO
