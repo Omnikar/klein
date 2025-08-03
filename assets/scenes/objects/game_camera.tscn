@@ -4,5 +4,5 @@
 
 [node name="GameCamera" type="Camera2D"]
 anchor_mode = 0
-zoom = Vector2(12.5, 12.5)
+zoom = Vector2(6.25, 6.25)
 script = ExtResource("1_u1y55")
