@@ -56,37 +56,39 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="PressurePlate" parent="." instance=ExtResource("5_cq0f5")]
+[node name="RedPressurePlate" parent="." instance=ExtResource("5_cq0f5")]
 position = Vector2(44, 56)
+color = Color(0.921569, 0.168627, 0.176471, 1)
 
-[node name="PressurePlate2" parent="." instance=ExtResource("5_cq0f5")]
+[node name="BluePressurePlate" parent="." instance=ExtResource("5_cq0f5")]
 position = Vector2(20, 24)
+color = Color(0.0901961, 0.333333, 0.85098, 1)
 
-[node name="SlideGate" parent="." instance=ExtResource("6_c2hu6")]
+[node name="RedGate" parent="." instance=ExtResource("6_c2hu6")]
 position = Vector2(72, 88)
 rotation = 3.14159
 
-[node name="RailLayer" parent="SlideGate" index="0"]
+[node name="RailLayer" parent="RedGate" index="0"]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
 
-[node name="GateLayer" parent="SlideGate" index="1"]
+[node name="GateLayer" parent="RedGate" index="1"]
 position = Vector2(0, 8)
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAADA=")
 
-[node name="ClosedPos" parent="SlideGate" index="2"]
+[node name="ClosedPos" parent="RedGate" index="2"]
 position = Vector2(0, 8)
 
-[node name="SlideGate2" parent="." instance=ExtResource("6_c2hu6")]
+[node name="BlueGate" parent="." instance=ExtResource("6_c2hu6")]
 position = Vector2(24, 72)
 
-[node name="RailLayer" parent="SlideGate2" index="0"]
+[node name="RailLayer" parent="BlueGate" index="0"]
 tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
 
-[node name="GateLayer" parent="SlideGate2" index="1"]
+[node name="GateLayer" parent="BlueGate" index="1"]
 position = Vector2(0, 8)
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAAAAAADAAEAAAA=")
 
-[node name="ClosedPos" parent="SlideGate2" index="2"]
+[node name="ClosedPos" parent="BlueGate" index="2"]
 position = Vector2(0, 8)
 
 [node name="Box" parent="." instance=ExtResource("7_c0i8s")]
@@ -98,13 +100,13 @@ position = Vector2(64, 16)
 [node name="Player" parent="." instance=ExtResource("9_sa46y")]
 position = Vector2(16, 72)
 
-[connection signal="plate_updated" from="PressurePlate" to="SlideGate" method="set_open"]
-[connection signal="plate_updated" from="PressurePlate2" to="SlideGate2" method="set_open"]
+[connection signal="plate_updated" from="RedPressurePlate" to="RedGate" method="set_open"]
+[connection signal="plate_updated" from="BluePressurePlate" to="BlueGate" method="set_open"]
 [connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
 
 [editable path="Portals/LeftPortal"]
 [editable path="Portals/RightPortal"]
 [editable path="Portals/TopPortal"]
 [editable path="Portals/BottomPortal"]
-[editable path="SlideGate"]
-[editable path="SlideGate2"]
+[editable path="RedGate"]
+[editable path="BlueGate"]
