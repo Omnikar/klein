@@ -135,6 +135,13 @@ func handle_movement(delta: float) -> void:
 		direction = last_direction
 	elif cos(rotation) < -0.01:
 		direction *= -1
+
+	if direction and abs(relative_x_vel()) > 0.01 and is_on_floor():
+		if !step_sfx.playing:
+			step_sfx.play()
+	else:
+		step_sfx.stop()
+
 	if direction:
 		set_relative_x_vel(direction * speed)
 		# var momentum = direction * speed * mass
@@ -147,13 +154,8 @@ func handle_movement(delta: float) -> void:
 	last_direction = direction
 
 	move_and_slide()
-	
-	if abs(relative_x_vel()) > 0.001:
-		if !step_sfx.playing:
-			step_sfx.play()
-	else:
-		step_sfx.stop()
-	
+
+
 # FIXME: Doesn't correctly handle rotation/flipping of carried object
 func handle_carry() -> void:
 	$CarryPoint.position = carry_point_pos.reflect(Vector2.DOWN) if flipped else carry_point_pos
