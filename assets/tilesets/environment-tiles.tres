@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://lnm0dxsgi887"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://lnm0dxsgi887"]
 
 [ext_resource type="Texture2D" uid="uid://3m1tx211782i" path="res://assets/sprites/ground-tileset.png" id="1_8vloi"]
+[ext_resource type="Texture2D" uid="uid://blja7a7sycmf5" path="res://assets/sprites/background-tile.png" id="2_atv5h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_376kr"]
 texture = ExtResource("1_8vloi")
@@ -383,6 +384,10 @@ texture_region_size = Vector2i(8, 8)
 2:6/0/terrains_peering_bit/top_left_corner = 0
 2:6/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nnsua"]
+texture = ExtResource("2_atv5h")
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(8, 8)
 physics_layer_0/collision_layer = 1
@@ -390,4 +395,7 @@ physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "ground"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "background"
+terrain_set_0/terrain_1/color = Color(0.350541, 0.476989, 0.398351, 1)
 sources/0 = SubResource("TileSetAtlasSource_376kr")
+sources/1 = SubResource("TileSetAtlasSource_nnsua")
