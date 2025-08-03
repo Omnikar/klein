@@ -6,6 +6,8 @@ extends Node2D
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		Utils.return_to_menu()
+	elif Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 
 func load_next_level() -> void:
