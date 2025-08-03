@@ -9,7 +9,7 @@ class_name PlayerController extends CharacterBody2D
 		return $PortalAffected.flipped
 	set(value):
 		$PortalAffected.flipped = value
-@export var mass = 7
+@export var mass = 6
 
 var vertical: bool:
 	get():

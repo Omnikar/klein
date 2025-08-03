@@ -15,7 +15,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_bvijd")
-level_count = 4
+level_count = 5
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)

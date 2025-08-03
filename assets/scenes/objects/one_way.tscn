@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://ra2gx8o66nrd"]
 
-[ext_resource type="TileSet" uid="uid://cj17k72moatyq" path="res://assets/tilesets/one-way-tiles.tres" id="1_64bat"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="1_64bat"]
 
 [node name="OneWay" type="TileMapLayer"]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0)
 tile_set = ExtResource("1_64bat")
