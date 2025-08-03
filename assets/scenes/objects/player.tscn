@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://bokqtkng5s04c"]
+[gd_scene load_steps=14 format=3 uid="uid://bokqtkng5s04c"]
 
 [ext_resource type="Texture2D" uid="uid://bpoo4w8nimu2" path="res://assets/sprites/character.png" id="1_rwm0n"]
 [ext_resource type="Script" uid="uid://c3jvvfufi2k5h" path="res://assets/scripts/player_controller.gd" id="1_s027a"]
 [ext_resource type="Script" uid="uid://ckt7lu1tc4g4v" path="res://assets/scripts/player_animator.gd" id="2_14505"]
 [ext_resource type="Script" uid="uid://bl8vo6lvw7xwa" path="res://assets/scripts/portal_affected.gd" id="4_4wcc8"]
 [ext_resource type="Texture2D" uid="uid://btgwnnv40bnds" path="res://assets/sprites/e-indicator.png" id="5_4faiu"]
+[ext_resource type="AudioStream" uid="uid://bxoo6aqcsxmqm" path="res://assets/sounds/step.ogg" id="6_5nvyp"]
+[ext_resource type="AudioStream" uid="uid://b1jfvt3cjjrt1" path="res://assets/sounds/jump.ogg" id="7_5nvyp"]
 
 [sub_resource type="Animation" id="Animation_14505"]
 length = 0.001
@@ -70,9 +72,11 @@ height = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_7hqio"]
 radius = 1.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("jump_sfx", "step_sfx")]
 collision_layer = 6
 script = ExtResource("1_s027a")
+jump_sfx = NodePath("Audio/JumpSound")
+step_sfx = NodePath("Audio/WalkSound")
 
 [node name="Graphics" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_14505")
@@ -120,6 +124,15 @@ z_index = 5
 position = Vector2(8, -9)
 scale = Vector2(0.666667, 0.666667)
 texture = ExtResource("5_4faiu")
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="WalkSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_5nvyp")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("7_5nvyp")
+volume_db = 6.239
 
 [connection signal="area_entered" from="InteractArea" to="." method="approach_object"]
 [connection signal="area_exited" from="InteractArea" to="." method="leave_object"]

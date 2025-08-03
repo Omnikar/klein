@@ -1,6 +1,9 @@
 @tool
 class_name PlayerController extends CharacterBody2D
 
+@export var jump_sfx: AudioStreamPlayer
+@export var step_sfx: AudioStreamPlayer
+
 @export var speed = 50.0
 @export var jump_vel = 130.0
 @export var max_y_speed = 500.0
@@ -118,6 +121,7 @@ func handle_movement(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		set_relative_y_vel(-jump_vel)
+		jump_sfx.play()
 		# var momentum = -jump_vel * mass
 		# set_relative_y_vel(momentum / total_mass)
 
@@ -143,8 +147,13 @@ func handle_movement(delta: float) -> void:
 	last_direction = direction
 
 	move_and_slide()
-
-
+	
+	if abs(relative_x_vel()) > 0.001:
+		if !step_sfx.playing:
+			step_sfx.play()
+	else:
+		step_sfx.stop()
+	
 # FIXME: Doesn't correctly handle rotation/flipping of carried object
 func handle_carry() -> void:
 	$CarryPoint.position = carry_point_pos.reflect(Vector2.DOWN) if flipped else carry_point_pos
