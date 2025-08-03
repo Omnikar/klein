@@ -15,9 +15,9 @@ var pressers: int = 0:
 	get():
 		return pressers
 	set(value):
-		var old = pressers
+		var old = pressed
 		pressers = value
-		if old != value:
+		if old != pressed:
 			send_plate_signals()
 var pressed: bool:
 	get():
@@ -49,5 +49,9 @@ func send_plate_signals() -> void:
 	plate_updated.emit(pressed)
 	if pressed:
 		plate_pressed.emit()
+		$ClickSound.pitch_scale = 1.0
+		$ClickSound.play()
 	else:
 		plate_lifted.emit()
+		$ClickSound.pitch_scale = 0.7
+		$ClickSound.play()
