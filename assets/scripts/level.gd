@@ -13,3 +13,8 @@ func _process(_delta: float) -> void:
 func load_next_level() -> void:
 	if level_num != 0:
 		Utils.load_level(level_num + 1)
+
+
+func complete_level() -> void:
+	Utils.play_win_sound()
+	load_next_level()

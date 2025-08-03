@@ -1,5 +1,12 @@
 extends Node
 
+var win_sound: AudioStreamPlayer
+
+
+func _ready() -> void:
+	win_sound = preload("res://assets/scenes/objects/win_sound.tscn").instantiate()
+	add_child(win_sound)
+
 
 func find_ancestor(start: Node, condition: Callable) -> Variant:
 	var current = start
@@ -21,3 +28,7 @@ func load_level(level_num: int) -> void:
 
 func return_to_menu() -> void:
 	get_tree().change_scene_to_file("res://assets/scenes/areas/menu.tscn")
+
+
+func play_win_sound() -> void:
+	win_sound.play()

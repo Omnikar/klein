@@ -82,7 +82,7 @@ position = Vector2(28, 46)
 [node name="Player" parent="." instance=ExtResource("7_6xj2n")]
 position = Vector2(16, 88)
 
-[connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
+[connection signal="goal_reached" from="Goal" to="." method="complete_level"]
 [connection signal="plate_updated" from="PressurePlate" to="SlideGate" method="set_open"]
 
 [editable path="Portals/LeftPortal"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://b4jhftb4rlv34"]
+[gd_scene load_steps=11 format=4 uid="uid://cwgkmb6x238en"]
 
 [ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_sxrae"]
 [ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_eatdk"]
@@ -92,7 +92,7 @@ position = Vector2(-40, 40)
 position = Vector2(16, 40)
 
 [connection signal="switch_updated" from="Switch" to="SlideGate" method="set_open"]
-[connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
+[connection signal="goal_reached" from="Goal" to="." method="complete_level"]
 
 [editable path="Portals/LeftPortal"]
 [editable path="Portals/RightPortal"]

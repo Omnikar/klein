@@ -69,7 +69,7 @@ position = Vector2(80, 56)
 [node name="Player" parent="." instance=ExtResource("8_o7y21")]
 position = Vector2(16, 88)
 
-[connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
+[connection signal="goal_reached" from="Goal" to="." method="complete_level"]
 
 [editable path="Portals/LeftPortal"]
 [editable path="Portals/RightPortal"]
