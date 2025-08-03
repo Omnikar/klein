@@ -2,7 +2,7 @@
 class_name PlayerController extends CharacterBody2D
 
 @export var speed = 50.0
-@export var jump_vel = 140.0
+@export var jump_vel = 130.0
 @export var max_y_speed = 500.0
 @export var flipped = false:
 	get():

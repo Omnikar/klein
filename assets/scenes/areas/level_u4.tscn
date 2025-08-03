@@ -1,0 +1,159 @@
+[gd_scene load_steps=10 format=4 uid="uid://csc7m2ct4lgsn"]
+
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_y0pua"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_xym8a"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_q7ocv"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_rd6tx"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_6l0y7"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="6_x2f8u"]
+[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="6_xym8a"]
+[ext_resource type="PackedScene" uid="uid://b550qq4mofkts" path="res://assets/scenes/objects/pressure_plate.tscn" id="7_q7ocv"]
+[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="8_rd6tx"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_y0pua")
+
+[node name="Background" type="TileMapLayer" parent="."]
+modulate = Color(0.61339, 0.61339, 0.61339, 1)
+z_index = -5
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAABAP//AQAAAAAAAAADAP//AQAAAAAAAAAFAP//AQAAAAAAAAAHAP//AQAAAAAAAAAJAP//AQAAAAAAAAALAP//AQAAAAAAAAD//wEAAQAAAAAAAAABAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAALAAEAAQAAAAAAAAD//wMAAQAAAAAAAAABAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAALAAMAAQAAAAAAAAALAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAADAAUAAQAAAAAAAAABAAUAAQAAAAAAAAD//wUAAQAAAAAAAAD//wcAAQAAAAAAAAD//wkAAQAAAAAAAAD//wsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAkAAQAAAAAAAAABAAcAAQAAAAAAAAADAAcAAQAAAAAAAAADAAkAAQAAAAAAAAADAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAkAAQAAAAAAAAAFAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAkAAQAAAAAAAAAHAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAcAAQAAAAAAAAALAAcAAQAAAAAAAAALAAkAAQAAAAAAAAALAAsAAQAAAAAAAAA=")
+tile_set = ExtResource("2_xym8a")
+
+[node name="Environment" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAABAAMAAAALAP//AAACAAEAAAAKAP//AAABAAEAAAAIAP//AAAAAAEAAAAHAAwAAAAAAAMAAAAEAP//AAAAAAEAAAADAAwAAAAAAAMAAAABAAwAAAADAAMAAAAAAAwAAAACAAMAAAAAAP//AAADAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wAAAAABAAIAAAD/////AAABAAEAAAACAP//AAAAAAEAAAAJAAwAAAAAAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAAMAAQAAAADAAIAAAAMAAUAAAADAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAAMAAcAAAADAAIAAAAMAAYAAAADAAIAAAALAAsAAAABAAIAAAAJAAsAAAAAAAEAAAAHAAsAAAAAAAEAAAADAAsAAAAAAAEAAAABAAsAAAADAAEAAAAAAAsAAAACAAEAAAALAAAAAAACAAMAAAALAAQAAAABAAIAAAALAAUAAAABAAIAAAALAAYAAAABAAIAAAALAAcAAAABAAIAAAAAAAAAAAADAAIAAAACAAAAAAAAAAMAAAAEAAAAAAAAAAMAAAAIAAAAAAAAAAMAAAAKAAAAAAABAAMAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAALAAoAAAABAAIAAAAMAAoAAAADAAIAAAD//wEAAAABAAIAAAAAAAEAAAADAAIAAAAFAAwAAAAAAAMAAAAFAAsAAAAAAAEAAAAAAAgAAAADAAMAAAAAAAMAAAADAAIAAAAAAAIAAAADAAIAAAD//wgAAAABAAMAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAAMAAkAAAADAAIAAAAMAAgAAAADAAIAAAAMAAMAAAADAAEAAAALAAkAAAABAAIAAAALAAgAAAABAAIAAAALAAMAAAABAAEAAAAGAAAAAAAAAAMAAAAGAP//AAAAAAEAAAAEAAYAAAAAAAEAAAA=")
+tile_set = ExtResource("2_xym8a")
+
+[node name="GameCamera" parent="." instance=ExtResource("3_q7ocv")]
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_rd6tx")]
+other_portal = NodePath("../RightPortal")
+
+[node name="Endpoint" parent="Portals/LeftPortal" index="0"]
+position = Vector2(0, 96)
+
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_rd6tx")]
+position = Vector2(96, 0)
+other_portal = NodePath("../LeftPortal")
+flipped = true
+
+[node name="Endpoint" parent="Portals/RightPortal" index="0"]
+position = Vector2(0, 96)
+
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_rd6tx")]
+other_portal = NodePath("../BottomPortal")
+
+[node name="Endpoint" parent="Portals/TopPortal" index="0"]
+position = Vector2(96, 0)
+
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_rd6tx")]
+position = Vector2(0, 96)
+other_portal = NodePath("../TopPortal")
+flipped = true
+
+[node name="Endpoint" parent="Portals/BottomPortal" index="0"]
+position = Vector2(96, 0)
+
+[node name="Goal" parent="." instance=ExtResource("5_6l0y7")]
+position = Vector2(120, 80)
+
+[node name="Box" parent="." instance=ExtResource("6_xym8a")]
+position = Vector2(36, 46)
+
+[node name="PressurePlate" parent="." instance=ExtResource("7_q7ocv")]
+position = Vector2(36, 56)
+rotation = 3.14159
+
+[node name="BottomGates" type="Node2D" parent="."]
+position = Vector2(-8, 88)
+
+[node name="SlideGate" parent="BottomGates" instance=ExtResource("8_rd6tx")]
+position = Vector2(32, 0)
+rotation = 1.5708
+
+[node name="RailLayer" parent="BottomGates/SlideGate" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="BottomGates/SlideGate" index="1"]
+position = Vector2(-1.04907e-06, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+
+[node name="ClosedPos" parent="BottomGates/SlideGate" index="2"]
+position = Vector2(-1.04907e-06, 8)
+
+[node name="SlideGate2" parent="BottomGates" instance=ExtResource("8_rd6tx")]
+position = Vector2(48, 0)
+rotation = 1.5708
+
+[node name="RailLayer" parent="BottomGates/SlideGate2" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="BottomGates/SlideGate2" index="1"]
+position = Vector2(-1.04907e-06, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+
+[node name="ClosedPos" parent="BottomGates/SlideGate2" index="2"]
+position = Vector2(-1.04907e-06, 8)
+
+[node name="SlideGate3" parent="BottomGates" instance=ExtResource("8_rd6tx")]
+position = Vector2(64, 0)
+rotation = 1.5708
+
+[node name="RailLayer" parent="BottomGates/SlideGate3" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="BottomGates/SlideGate3" index="1"]
+position = Vector2(-1.04907e-06, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+
+[node name="ClosedPos" parent="BottomGates/SlideGate3" index="2"]
+position = Vector2(-1.04907e-06, 8)
+
+[node name="SlideGate4" parent="BottomGates" instance=ExtResource("8_rd6tx")]
+position = Vector2(80, 0)
+rotation = 1.5708
+
+[node name="RailLayer" parent="BottomGates/SlideGate4" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="BottomGates/SlideGate4" index="1"]
+position = Vector2(-1.04907e-06, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+
+[node name="ClosedPos" parent="BottomGates/SlideGate4" index="2"]
+position = Vector2(-1.04907e-06, 8)
+
+[node name="SlideGate5" parent="BottomGates" instance=ExtResource("8_rd6tx")]
+position = Vector2(96, 0)
+rotation = 1.5708
+
+[node name="RailLayer" parent="BottomGates/SlideGate5" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="BottomGates/SlideGate5" index="1"]
+position = Vector2(-1.04907e-06, 8)
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
+
+[node name="ClosedPos" parent="BottomGates/SlideGate5" index="2"]
+position = Vector2(-1.04907e-06, 8)
+
+[node name="Player" parent="." instance=ExtResource("6_x2f8u")]
+position = Vector2(12, 88)
+
+[connection signal="goal_reached" from="Goal" to="." method="load_next_level"]
+[connection signal="plate_updated" from="PressurePlate" to="BottomGates/SlideGate" method="set_open"]
+[connection signal="plate_updated" from="PressurePlate" to="BottomGates/SlideGate2" method="set_open"]
+[connection signal="plate_updated" from="PressurePlate" to="BottomGates/SlideGate3" method="set_open"]
+[connection signal="plate_updated" from="PressurePlate" to="BottomGates/SlideGate4" method="set_open"]
+[connection signal="plate_updated" from="PressurePlate" to="BottomGates/SlideGate5" method="set_open"]
+
+[editable path="Portals/LeftPortal"]
+[editable path="Portals/RightPortal"]
+[editable path="Portals/TopPortal"]
+[editable path="Portals/BottomPortal"]
+[editable path="BottomGates/SlideGate"]
+[editable path="BottomGates/SlideGate2"]
+[editable path="BottomGates/SlideGate3"]
+[editable path="BottomGates/SlideGate4"]
+[editable path="BottomGates/SlideGate5"]
