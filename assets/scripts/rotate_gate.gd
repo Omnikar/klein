@@ -20,6 +20,12 @@ var gate_speed: float:
 		return open_speed if open else close_speed
 
 
+func _draw() -> void:
+	if Engine.is_editor_hint():
+		var arc_offset = PI / 2
+		draw_arc($Pivot.position, 8, arc_offset, arc_offset + open_rotation, 20, Color.GREEN)
+
+
 func _ready() -> void:
 	teleport_gate()
 
