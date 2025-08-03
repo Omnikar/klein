@@ -1,35 +1,35 @@
 [gd_scene load_steps=7 format=4 uid="uid://c1n07hnkuipfe"]
 
-[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_81ct0"]
-[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_81ct0"]
-[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_ap3ro"]
-[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_bcakm"]
-[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_7k7u7"]
-[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="6_deaw5"]
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_nxtwn"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_0tfv1"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_mvqx1"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_omvaj"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_v5818"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="6_s6pr2"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_81ct0")
+script = ExtResource("1_nxtwn")
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
 tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAABAP//AQAAAAAAAAADAP//AQAAAAAAAAAFAP//AQAAAAAAAAAHAP//AQAAAAAAAAAJAP//AQAAAAAAAAALAP//AQAAAAAAAAANAP//AQAAAAAAAAD//wEAAQAAAAAAAAABAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAALAAEAAQAAAAAAAAANAAEAAQAAAAAAAAD//wMAAQAAAAAAAAABAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAALAAMAAQAAAAAAAAANAAMAAQAAAAAAAAANAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAADAAUAAQAAAAAAAAABAAUAAQAAAAAAAAD//wUAAQAAAAAAAAD//wcAAQAAAAAAAAD//wkAAQAAAAAAAAD//wsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAkAAQAAAAAAAAABAAcAAQAAAAAAAAADAAcAAQAAAAAAAAADAAkAAQAAAAAAAAADAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAkAAQAAAAAAAAAFAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAkAAQAAAAAAAAAHAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAcAAQAAAAAAAAALAAcAAQAAAAAAAAANAAcAAQAAAAAAAAANAAkAAQAAAAAAAAALAAkAAQAAAAAAAAALAAsAAQAAAAAAAAANAAsAAQAAAAAAAAA=")
-tile_set = ExtResource("2_81ct0")
+tile_set = ExtResource("2_0tfv1")
 
 [node name="Environment" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAAAAAADAAIAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAP//AAACAAEAAAAKAP//AAACAAEAAAAJAP//AAACAAEAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAACAAwAAAACAAMAAAABAAwAAAACAAMAAAAAAAwAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAADAP//AAACAAEAAAAIAAwAAAACAAMAAAABAP//AAACAAEAAAACAP//AAACAAEAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAAMAAQAAAADAAIAAAAMAAUAAAADAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAAMAAcAAAADAAIAAAAMAAYAAAADAAIAAAALAAsAAAAFAAEAAAAKAAsAAAACAAEAAAAJAAsAAAACAAEAAAAIAAsAAAACAAEAAAAHAAsAAAACAAEAAAAEAAsAAAACAAEAAAADAAsAAAACAAEAAAACAAsAAAACAAEAAAABAAsAAAACAAEAAAAAAAsAAAAEAAEAAAALAAAAAAAFAAAAAAALAAQAAAABAAIAAAALAAUAAAABAAIAAAALAAYAAAABAAIAAAALAAcAAAABAAIAAAAAAAAAAAAEAAAAAAABAAAAAAACAAMAAAACAAAAAAACAAMAAAADAAAAAAACAAMAAAAEAAAAAAACAAMAAAAHAAAAAAACAAMAAAAIAAAAAAACAAMAAAAJAAAAAAACAAMAAAAKAAAAAAACAAMAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAoAAAADAAIAAAD//woAAAABAAIAAAALAAoAAAABAAIAAAAMAAoAAAADAAIAAAD//wEAAAABAAIAAAAAAAEAAAADAAIAAAALAAEAAAABAAIAAAAMAAEAAAADAAIAAAAGAAwAAAACAAMAAAAGAAsAAAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAACAAEAAAAAAAkAAAADAAIAAAAAAAgAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAADAAIAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAAMAAkAAAADAAIAAAAMAAgAAAADAAIAAAAMAAMAAAADAAIAAAAMAAIAAAADAAIAAAALAAkAAAABAAIAAAALAAgAAAABAAIAAAALAAMAAAABAAIAAAALAAIAAAABAAIAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAA=")
-tile_set = ExtResource("2_81ct0")
+tile_set = ExtResource("2_0tfv1")
 
-[node name="GameCamera" parent="." instance=ExtResource("3_ap3ro")]
+[node name="GameCamera" parent="." instance=ExtResource("3_mvqx1")]
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_bcakm")]
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_omvaj")]
 other_portal = NodePath("../RightPortal")
 
 [node name="Endpoint" parent="Portals/LeftPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_bcakm")]
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_omvaj")]
 position = Vector2(96, 0)
 other_portal = NodePath("../LeftPortal")
 flipped = true
@@ -37,13 +37,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/RightPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_bcakm")]
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_omvaj")]
 other_portal = NodePath("../BottomPortal")
 
 [node name="Endpoint" parent="Portals/TopPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_bcakm")]
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_omvaj")]
 position = Vector2(0, 96)
 other_portal = NodePath("../TopPortal")
 flipped = true
@@ -51,10 +51,10 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="Goal" parent="." instance=ExtResource("5_7k7u7")]
+[node name="Goal" parent="." instance=ExtResource("5_v5818")]
 position = Vector2(83, -31)
 
-[node name="Player" parent="." instance=ExtResource("6_deaw5")]
+[node name="Player" parent="." instance=ExtResource("6_s6pr2")]
 position = Vector2(49, -27)
 
 [connection signal="goal_reached" from="Goal" to="." method="load_next_level"]

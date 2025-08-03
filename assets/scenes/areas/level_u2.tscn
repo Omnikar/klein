@@ -1,36 +1,37 @@
-[gd_scene load_steps=7 format=4 uid="uid://d0uye6xcnidcy"]
+[gd_scene load_steps=8 format=4 uid="uid://d0uye6xcnidcy"]
 
-[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_03k5c"]
-[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_03k5c"]
-[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_w4uft"]
-[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_voujc"]
-[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_8qshp"]
-[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="6_8oomy"]
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_0vx18"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_j4gsm"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_1spt5"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_xrhvw"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_nnxpg"]
+[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="6_5ni4k"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="7_1bb37"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_03k5c")
+script = ExtResource("1_0vx18")
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
 tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAABAP//AQAAAAAAAAADAP//AQAAAAAAAAAFAP//AQAAAAAAAAAHAP//AQAAAAAAAAAJAP//AQAAAAAAAAALAP//AQAAAAAAAAANAP//AQAAAAAAAAD//wEAAQAAAAAAAAABAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAALAAEAAQAAAAAAAAANAAEAAQAAAAAAAAD//wMAAQAAAAAAAAABAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAALAAMAAQAAAAAAAAANAAMAAQAAAAAAAAANAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAADAAUAAQAAAAAAAAABAAUAAQAAAAAAAAD//wUAAQAAAAAAAAD//wcAAQAAAAAAAAD//wkAAQAAAAAAAAD//wsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAkAAQAAAAAAAAABAAcAAQAAAAAAAAADAAcAAQAAAAAAAAADAAkAAQAAAAAAAAADAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAkAAQAAAAAAAAAFAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAkAAQAAAAAAAAAHAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAcAAQAAAAAAAAALAAcAAQAAAAAAAAANAAcAAQAAAAAAAAANAAkAAQAAAAAAAAALAAkAAQAAAAAAAAALAAsAAQAAAAAAAAANAAsAAQAAAAAAAAA=")
-tile_set = ExtResource("2_03k5c")
+tile_set = ExtResource("2_j4gsm")
 
 [node name="Environment" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAAAAAADAAIAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAP//AAACAAEAAAAKAP//AAACAAEAAAAJAP//AAACAAEAAAAIAP//AAACAAEAAAAHAAwAAAABAAMAAAAHAP//AAABAAEAAAAEAAwAAAADAAMAAAAEAP//AAADAAEAAAADAAwAAAACAAMAAAACAAwAAAACAAMAAAABAAwAAAACAAMAAAAAAAwAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAADAP//AAACAAEAAAAIAAwAAAACAAMAAAABAP//AAACAAEAAAACAP//AAACAAEAAAAJAAwAAAACAAMAAAAKAAwAAAACAAMAAAD//wcAAAABAAEAAAAMAAQAAAADAAMAAAD//wQAAAABAAMAAAAMAAcAAAADAAEAAAALAAsAAAACAAIAAAAKAAsAAAACAAIAAAAJAAsAAAAFAAEAAAAIAAsAAAACAAEAAAAHAAsAAAABAAEAAAAEAAsAAAADAAEAAAADAAsAAAACAAEAAAACAAsAAAAEAAEAAAABAAsAAAACAAIAAAAAAAsAAAACAAIAAAALAAAAAAACAAIAAAALAAQAAAABAAMAAAALAAcAAAABAAEAAAAAAAAAAAACAAIAAAABAAAAAAACAAIAAAACAAAAAAAEAAAAAAADAAAAAAACAAMAAAAEAAAAAAADAAMAAAAHAAAAAAABAAMAAAAIAAAAAAACAAMAAAAJAAAAAAAFAAAAAAAKAAAAAAACAAIAAAAAAAcAAAADAAEAAAAAAAQAAAADAAMAAAAAAAoAAAACAAIAAAD//woAAAABAAIAAAALAAoAAAACAAIAAAAMAAoAAAADAAIAAAD//wEAAAABAAIAAAAAAAEAAAACAAIAAAALAAEAAAACAAIAAAAMAAEAAAADAAIAAAAAAAkAAAAEAAEAAAAAAAgAAAADAAIAAAAAAAMAAAADAAIAAAAAAAIAAAAEAAAAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAAMAAkAAAADAAIAAAAMAAgAAAADAAIAAAAMAAMAAAADAAIAAAAMAAIAAAADAAIAAAALAAkAAAAFAAEAAAALAAgAAAABAAIAAAALAAMAAAABAAIAAAALAAIAAAAFAAAAAAAKAAoAAAACAAIAAAAKAAkAAAACAAEAAAAKAAIAAAACAAMAAAAKAAEAAAACAAIAAAAJAAoAAAABAAIAAAAJAAkAAAABAAEAAAAJAAIAAAABAAMAAAAJAAEAAAABAAIAAAACAAoAAAADAAIAAAACAAkAAAADAAEAAAACAAIAAAADAAMAAAACAAEAAAADAAIAAAABAAoAAAACAAIAAAABAAkAAAACAAEAAAABAAIAAAACAAMAAAABAAEAAAACAAIAAAA=")
-tile_set = ExtResource("2_03k5c")
+tile_set = ExtResource("2_j4gsm")
 
-[node name="GameCamera" parent="." instance=ExtResource("3_w4uft")]
+[node name="GameCamera" parent="." instance=ExtResource("3_1spt5")]
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_voujc")]
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_xrhvw")]
 other_portal = NodePath("../BottomPortal")
 reorient = true
 
 [node name="Endpoint" parent="Portals/LeftPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_voujc")]
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_xrhvw")]
 position = Vector2(96, 0)
 other_portal = NodePath("../TopPortal")
 reorient = true
@@ -38,13 +39,13 @@ reorient = true
 [node name="Endpoint" parent="Portals/RightPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_voujc")]
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_xrhvw")]
 other_portal = NodePath("../RightPortal")
 
 [node name="Endpoint" parent="Portals/TopPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_voujc")]
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_xrhvw")]
 position = Vector2(0, 96)
 other_portal = NodePath("../LeftPortal")
 flipped = true
@@ -52,10 +53,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="Goal" parent="." instance=ExtResource("5_8qshp")]
+[node name="Goal" parent="." instance=ExtResource("5_nnxpg")]
 position = Vector2(48, 48)
 
-[node name="Player" parent="." instance=ExtResource("6_8oomy")]
+[node name="Box" parent="." instance=ExtResource("6_5ni4k")]
+position = Vector2(64, 80)
+
+[node name="Player" parent="." instance=ExtResource("7_1bb37")]
 position = Vector2(30, 88)
 
 [connection signal="goal_reached" from="Goal" to="." method="load_next_level"]

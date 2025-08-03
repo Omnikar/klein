@@ -1,38 +1,38 @@
 [gd_scene load_steps=10 format=4 uid="uid://begid62h1r44x"]
 
-[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_4bbd1"]
-[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="2_4bbd1"]
-[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_eqht2"]
-[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="2_jruc1"]
-[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="3_4bbd1"]
-[ext_resource type="PackedScene" uid="uid://b550qq4mofkts" path="res://assets/scenes/objects/pressure_plate.tscn" id="4_eqht2"]
-[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="5_fdis0"]
-[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="6_jctr6"]
-[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="7_v7i0w"]
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_o5uv7"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_xgvfp"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_raim8"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_itbx2"]
+[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="5_mv8tn"]
+[ext_resource type="PackedScene" uid="uid://b550qq4mofkts" path="res://assets/scenes/objects/pressure_plate.tscn" id="6_cb6rp"]
+[ext_resource type="PackedScene" uid="uid://hur5qfby6x45" path="res://assets/scenes/objects/box.tscn" id="7_qrp78"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="8_twgy3"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="9_d63y4"]
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_4bbd1")
+script = ExtResource("1_o5uv7")
 
 [node name="Background" type="TileMapLayer" parent="."]
 modulate = Color(0.61339, 0.61339, 0.61339, 1)
 tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAABAP//AQAAAAAAAAADAP//AQAAAAAAAAAFAP//AQAAAAAAAAAHAP//AQAAAAAAAAAJAP//AQAAAAAAAAALAP//AQAAAAAAAAANAP//AQAAAAAAAAD//wEAAQAAAAAAAAABAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAALAAEAAQAAAAAAAAANAAEAAQAAAAAAAAD//wMAAQAAAAAAAAABAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAALAAMAAQAAAAAAAAANAAMAAQAAAAAAAAANAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAADAAUAAQAAAAAAAAABAAUAAQAAAAAAAAD//wUAAQAAAAAAAAD//wcAAQAAAAAAAAD//wkAAQAAAAAAAAD//wsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAkAAQAAAAAAAAABAAcAAQAAAAAAAAADAAcAAQAAAAAAAAADAAkAAQAAAAAAAAADAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAkAAQAAAAAAAAAFAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAkAAQAAAAAAAAAHAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAcAAQAAAAAAAAALAAcAAQAAAAAAAAANAAcAAQAAAAAAAAANAAkAAQAAAAAAAAALAAkAAQAAAAAAAAALAAsAAQAAAAAAAAANAAsAAQAAAAAAAAA=")
-tile_set = ExtResource("2_eqht2")
+tile_set = ExtResource("2_xgvfp")
 
 [node name="Environment" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAgAAAADAAIAAAAMAAcAAAADAAIAAAAMAAYAAAADAAIAAAAMAAUAAAADAAIAAAAMAAQAAAADAAIAAAAMAAMAAAADAAEAAAAMAAAAAAADAAMAAAAMAP//AAADAAEAAAALAAwAAAABAAMAAAALAAsAAAABAAIAAAALAAoAAAABAAIAAAALAAgAAAABAAIAAAALAAcAAAAFAAAAAAALAAYAAAAFAAEAAAALAAUAAAABAAIAAAALAAQAAAABAAIAAAALAAMAAAABAAEAAAALAAAAAAACAAMAAAALAP//AAACAAEAAAAKAAAAAAACAAMAAAAKAP//AAACAAEAAAAJAAAAAAACAAMAAAAJAP//AAACAAEAAAAIAAAAAAACAAMAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAAsAAAACAAEAAAAHAAAAAAACAAMAAAAHAP//AAACAAEAAAAGAAwAAAACAAMAAAAGAAsAAAACAAEAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAwAAAACAAMAAAAFAAsAAAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAAsAAAACAAEAAAAEAAAAAAAEAAAAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAADAAsAAAACAAEAAAACAAwAAAACAAMAAAACAAsAAAACAAEAAAABAAwAAAACAAMAAAABAAsAAAACAAEAAAAAAAwAAAACAAMAAAAAAAsAAAACAAEAAAAAAAgAAAADAAMAAAAAAAcAAAAGAAMAAAAAAAYAAAADAAIAAAAAAAUAAAADAAIAAAAAAAQAAAADAAIAAAAAAAMAAAAEAAAAAAAAAAIAAAAEAAEAAAAAAAEAAAADAAIAAAAAAAAAAAADAAIAAAAAAP//AAADAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAEAAAD//wgAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAD//wUAAAABAAIAAAD//wQAAAABAAIAAAD//wMAAAABAAIAAAD//wIAAAABAAIAAAD//wEAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAALAAkAAAABAAIAAAAMAAkAAAADAAIAAAAMAAoAAAADAAIAAAAFAAUAAAADAAAAAAAHAAIAAAAAAAEAAAAEAAEAAAADAAMAAAADAAEAAAAAAAQAAAABAAMAAAACAAMAAAACAAMAAAADAAMAAAABAAcAAAACAAAAAAACAAcAAAADAAAAAAAFAAkAAAADAAAAAAAEAAkAAAABAAAAAAAEAAUAAAABAAAAAAAHAAMAAAAAAAMAAAACAAIAAAACAAQAAAABAAIAAAACAAEAAAAJAAYAAAABAAEAAAAKAAYAAAACAAEAAAAJAAcAAAAAAAQAAAAJAAgAAAAAAAMAAAADAP//AAABAAEAAAADAAAAAAABAAIAAAAIAAsAAAADAAEAAAAIAAwAAAADAAMAAAADAAIAAAAGAAYAAAAKAAcAAAACAAMAAAA=")
-tile_set = ExtResource("2_eqht2")
+tile_set = ExtResource("2_xgvfp")
 
-[node name="GameCamera" parent="." instance=ExtResource("2_4bbd1")]
+[node name="GameCamera" parent="." instance=ExtResource("3_raim8")]
 
 [node name="Portals" type="Node" parent="."]
 
-[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_itbx2")]
 other_portal = NodePath("../RightPortal")
 
 [node name="Endpoint" parent="Portals/LeftPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_itbx2")]
 position = Vector2(96, 0)
 other_portal = NodePath("../LeftPortal")
 flipped = true
@@ -40,13 +40,13 @@ flipped = true
 [node name="Endpoint" parent="Portals/RightPortal" index="0"]
 position = Vector2(0, 96)
 
-[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_itbx2")]
 other_portal = NodePath("../BottomPortal")
 
 [node name="Endpoint" parent="Portals/TopPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("2_jruc1")]
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_itbx2")]
 position = Vector2(0, 96)
 other_portal = NodePath("../TopPortal")
 flipped = true
@@ -54,7 +54,7 @@ flipped = true
 [node name="Endpoint" parent="Portals/BottomPortal" index="0"]
 position = Vector2(96, 0)
 
-[node name="SlideGate" parent="." instance=ExtResource("3_4bbd1")]
+[node name="SlideGate" parent="." instance=ExtResource("5_mv8tn")]
 position = Vector2(56, 96)
 rotation = -1.5708
 
@@ -68,18 +68,18 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAAAAEAAAAAAAAAAAAAAAEAAAA=")
 [node name="ClosedPos" parent="SlideGate" index="2"]
 position = Vector2(3.49691e-07, 16)
 
-[node name="PressurePlate" parent="." instance=ExtResource("4_eqht2")]
+[node name="PressurePlate" parent="." instance=ExtResource("6_cb6rp")]
 position = Vector2(84, 64)
 rotation = 3.14159
 color = Color(0.921569, 0.168627, 0.176471, 1)
 
-[node name="Box" parent="." instance=ExtResource("5_fdis0")]
+[node name="Box" parent="." instance=ExtResource("7_qrp78")]
 position = Vector2(84, 46)
 
-[node name="Goal" parent="." instance=ExtResource("6_jctr6")]
+[node name="Goal" parent="." instance=ExtResource("8_twgy3")]
 position = Vector2(16, 8)
 
-[node name="Player" parent="." instance=ExtResource("7_v7i0w")]
+[node name="Player" parent="." instance=ExtResource("9_d63y4")]
 position = Vector2(16, 88)
 
 [connection signal="plate_updated" from="PressurePlate" to="SlideGate" method="set_open"]
