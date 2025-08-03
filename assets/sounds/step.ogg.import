@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/step.ogg-13b3fb1a8e72c7078d3a25df3366e347.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
-bpm=0
+bpm=0.0
 beat_count=0
 bar_beats=4

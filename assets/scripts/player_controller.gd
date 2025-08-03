@@ -138,6 +138,7 @@ func handle_movement(delta: float) -> void:
 
 	if direction and abs(relative_x_vel()) > 0.01 and is_on_floor():
 		if !step_sfx.playing:
+			step_sfx.pitch_scale = randf_range(0.9, 1.1)
 			step_sfx.play()
 	else:
 		step_sfx.stop()
