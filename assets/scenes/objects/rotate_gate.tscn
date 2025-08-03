@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb4r4gkamrhnn"]
+
+[ext_resource type="Script" uid="uid://83kyv7icbomr" path="res://assets/scripts/rotate_gate.gd" id="1_ocge4"]
+[ext_resource type="Texture2D" uid="uid://cfn7x2qwkx2nm" path="res://assets/sprites/gate.png" id="1_ukyur"]
+[ext_resource type="TileSet" uid="uid://dj6pd130tvip4" path="res://assets/tilesets/slide-gate-tiles.tres" id="2_ocge4"]
+
+[node name="RotateGate" type="Node2D"]
+script = ExtResource("1_ocge4")
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Pivot"]
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/StaticBody2D"]
+texture = ExtResource("1_ukyur")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pivot/StaticBody2D"]
+visible = false
+polygon = PackedVector2Array(-2, -4, 2, -4, 4, -2, 4, 2, 2, 4, -2, 4, -4, 2, -4, -2)
+
+[node name="GateLayer" type="TileMapLayer" parent="Pivot"]
+z_index = 1
+position = Vector2(-4, -4)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+tile_set = ExtResource("2_ocge4")

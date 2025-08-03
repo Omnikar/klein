@@ -8,6 +8,14 @@ class_name SlideGate extends Node2D
 var open_pos: Vector2
 var closed_pos: Vector2
 
+var target_pos: Vector2:
+	get():
+		return open_pos if open else closed_pos
+
+var gate_speed: float:
+	get():
+		return open_speed if open else close_speed
+
 
 func _ready() -> void:
 	teleport_gate()
@@ -22,15 +30,13 @@ func _process(_delta: float) -> void:
 func teleport_gate() -> void:
 	open_pos = $RailLayer.position
 	closed_pos = $ClosedPos.position
-	$GateLayer.position = open_pos if open else closed_pos
+	$GateLayer.position = target_pos
 
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
-	var target_pos = open_pos if open else closed_pos
-	var gate_speed = open_speed if open else close_speed
 	var to_target: Vector2 = target_pos - $GateLayer.position
 	var max_move_dist = gate_speed * delta
 
