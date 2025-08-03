@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://cb6ghoihxcria"]
+[gd_scene load_steps=9 format=3 uid="uid://cb6ghoihxcria"]
 
 [ext_resource type="Theme" uid="uid://cd3cg4gssehva" path="res://assets/misc/ui-theme.tres" id="1_25ej7"]
 [ext_resource type="Script" uid="uid://fag45t3ad5i0" path="res://assets/scripts/level_button.gd" id="1_eqc68"]
-[ext_resource type="StyleBox" uid="uid://cgou702gub27" path="res://assets/misc/level-button-hovered-style.tres" id="3_62y4r"]
 [ext_resource type="StyleBox" uid="uid://dpfr0g8qspb4r" path="res://assets/misc/level-button-style.tres" id="3_fdj2c"]
+[ext_resource type="Texture2D" uid="uid://b30jgtr6ut17c" path="res://assets/sprites/button2.png" id="3_rgu36"]
+[ext_resource type="Texture2D" uid="uid://cptxxm2fxxasf" path="res://assets/sprites/button.png" id="5_rgu36"]
+
+[sub_resource type="SystemFont" id="SystemFont_rgu36"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8t3di"]
+texture = ExtResource("3_rgu36")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_porjl"]
+texture = ExtResource("5_rgu36")
 
 [node name="LevelButton" type="Control"]
 custom_minimum_size = Vector2(120, 120)
@@ -30,9 +39,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource("1_25ej7")
-theme_override_styles/hover = ExtResource("3_62y4r")
+theme_override_fonts/font = SubResource("SystemFont_rgu36")
+theme_override_styles/hover = SubResource("StyleBoxTexture_8t3di")
 theme_override_styles/pressed = ExtResource("3_fdj2c")
-theme_override_styles/normal = ExtResource("3_fdj2c")
+theme_override_styles/normal = SubResource("StyleBoxTexture_porjl")
 text = "0"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
