@@ -154,8 +154,19 @@ func handle_movement(delta: float) -> void:
 	last_direction = direction
 
 	move_and_slide()
+<<<<<<< Updated upstream
 
 
+=======
+	
+	if abs(relative_x_vel()) > 0.001 and is_on_floor():
+		if !step_sfx.playing:
+			step_sfx.pitch_scale = randf_range(1, 1.2)
+			step_sfx.play()
+	else:
+		step_sfx.stop()
+	
+>>>>>>> Stashed changes
 # FIXME: Doesn't correctly handle rotation/flipping of carried object
 func handle_carry() -> void:
 	$CarryPoint.position = carry_point_pos.reflect(Vector2.DOWN) if flipped else carry_point_pos
