@@ -140,12 +140,9 @@ func handle_movement(delta: float) -> void:
 	elif cos(rotation) < -0.01:
 		direction *= -1
 
-	if direction and abs(relative_x_vel()) > 0.01 and is_on_floor():
-		if !step_sfx.playing:
-			step_sfx.pitch_scale = randf_range(0.9, 1.1)
-			step_sfx.play()
-	else:
-		step_sfx.stop()
+	if direction and abs(relative_x_vel()) > 0.01 and is_on_floor() and !step_sfx.playing:
+		step_sfx.pitch_scale = randf_range(0.9, 1.1)
+		step_sfx.play()
 
 	if direction:
 		set_relative_x_vel(direction * speed)

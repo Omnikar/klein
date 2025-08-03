@@ -79,7 +79,7 @@ offset_left = -60.0
 offset_right = 60.0
 offset_bottom = 120.0
 grow_horizontal = 2
-columns = 6
+columns = 4
 
 [node name="Title" type="TextureRect" parent="."]
 layout_mode = 1
