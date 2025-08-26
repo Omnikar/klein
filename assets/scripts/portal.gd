@@ -117,6 +117,9 @@ func teleport(obj: PortalAffected, entrance: Vector2) -> void:
 	if should_flip:
 		obj.flipped = !obj.flipped
 
+	if obj.transform_node is PlayerController:
+		obj.transform_node.update_carry_properties()
+
 
 func clear_phantoms() -> void:
 	for phantom in phantoms:

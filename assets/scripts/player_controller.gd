@@ -29,6 +29,7 @@ var carry_point_pos: Vector2
 var nearby_carryables: Dictionary = {}
 var carry: Carryable = null
 var carry_orig_parent: Node = null
+var carry_dir_diff: float = 0
 var carry_grav_dir_diffs: Array = []
 var carry_flip_diffs: Array = []
 
@@ -179,10 +180,15 @@ func handle_interact() -> void:
 func pickup(obj) -> void:
 	carry = obj
 	carry_orig_parent = carry.get_parent()
+	carry_dir_diff = carry.global_rotation - global_rotation
 	carry_grav_dir_diffs = find_portal_affecteds(carry).map(
 		func(pa): return pa.gravity_angle - $PortalAffected.gravity_angle
 	)
 	carry_flip_diffs = find_portal_affecteds(carry).map(func(pa): return pa.flipped != flipped)
+	if flipped:
+		for i in range(len(carry_grav_dir_diffs)):
+			carry_grav_dir_diffs[i] *= -1
+		carry_dir_diff *= -1
 	var carry_momentum = carry.linear_velocity * carry.mass
 	var own_momentum = velocity * mass
 	velocity = (own_momentum + carry_momentum) / total_mass
@@ -192,26 +198,36 @@ func pickup(obj) -> void:
 	carry.freeze = true
 
 
-func drop_carry() -> void:
-	carry.reparent(carry_orig_parent)
-	# carry.set_linear_velocity(velocity * 0.5)
-	carry.set_linear_velocity(Vector2.ZERO)
-	carry.set_angular_velocity(0)
-	set_portal_affecteds_enabled(carry, true)
+func update_carry_properties() -> void:
+	if carry == null:
+		return
 	var portal_affecteds = find_portal_affecteds(carry)
 	for i in range(portal_affecteds.size()):
 		portal_affecteds[i].last_pos = global_position
 		portal_affecteds[i].this_pos = carry.global_position
 		var grav_dir_diff = carry_grav_dir_diffs[i]
 		var flip = flipped != carry_flip_diffs[i]
-		# I think this is right, not sure
-		if flip:
+		if flipped:
 			grav_dir_diff *= -1
 		portal_affecteds[i].gravity_angle = $PortalAffected.gravity_angle + grav_dir_diff
 		portal_affecteds[i].flipped = flip
+	var dir_diff = carry_dir_diff
+	if flipped:
+		dir_diff *= -1
+	carry.global_rotation = global_rotation + dir_diff
+
+
+func drop_carry() -> void:
+	carry.reparent(carry_orig_parent)
+	# carry.set_linear_velocity(velocity * 0.5)
+	carry.set_linear_velocity(Vector2.ZERO)
+	carry.set_angular_velocity(0)
+	set_portal_affecteds_enabled(carry, true)
+	update_carry_properties()
 	carry.freeze = false
 	carry = null
 	carry_orig_parent = null
+	carry_dir_diff = 0
 	carry_grav_dir_diffs = []
 	carry_flip_diffs = []
 

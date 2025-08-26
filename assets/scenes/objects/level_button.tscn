@@ -2,10 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://cd3cg4gssehva" path="res://assets/misc/ui-theme.tres" id="1_25ej7"]
 [ext_resource type="Script" uid="uid://fag45t3ad5i0" path="res://assets/scripts/level_button.gd" id="1_eqc68"]
-[ext_resource type="Texture2D" uid="uid://b30jgtr6ut17c" path="res://assets/sprites/button2.png" id="3_rgu36"]
-[ext_resource type="Texture2D" uid="uid://cptxxm2fxxasf" path="res://assets/sprites/button.png" id="5_rgu36"]
+[ext_resource type="Texture2D" uid="uid://b30jgtr6ut17c" path="res://assets/sprites/level-button-hovered.png" id="3_rgu36"]
+[ext_resource type="Texture2D" uid="uid://cptxxm2fxxasf" path="res://assets/sprites/level-button.png" id="5_rgu36"]
 
 [sub_resource type="SystemFont" id="SystemFont_rgu36"]
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8t3di"]
 texture = ExtResource("3_rgu36")
