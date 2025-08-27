@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dj8e2wrpvbhds" path="res://assets/sprites/pressure-plate.png" id="1_3r8x4"]
 [ext_resource type="Script" uid="uid://cnqndyvs4215s" path="res://assets/scripts/pressure_plate.gd" id="1_r1cve"]
-[ext_resource type="AudioStream" uid="uid://blt1rsdhtq8xk" path="res://assets/sounds/switch-click.mp3" id="3_x2nol"]
+[ext_resource type="PackedScene" uid="uid://bhjp3n1p65ad8" path="res://assets/scenes/objects/click_sound.tscn" id="3_x2nol"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x2nol"]
 size = Vector2(6, 1)
@@ -38,8 +38,7 @@ visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_x2nol")
 
-[node name="ClickSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_x2nol")
+[node name="ClickSound" parent="." instance=ExtResource("3_x2nol")]
 
 [connection signal="body_entered" from="Plate" to="." method="_on_plate_body_entered"]
 [connection signal="body_exited" from="Plate" to="." method="_on_plate_body_exited"]

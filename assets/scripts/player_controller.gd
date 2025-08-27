@@ -96,6 +96,7 @@ func _physics_process(delta: float) -> void:
 		return
 
 	update_up_direction()
+	$InteractArea.scale.x = -1 if $PortalAffected.flipped else 1
 	handle_movement(delta)
 	handle_interact()
 
@@ -125,7 +126,7 @@ func handle_movement(delta: float) -> void:
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		set_relative_y_vel(-jump_vel)
+		set_relative_y_vel(relative_y_vel() - jump_vel)
 		jump_sfx.play()
 		# var momentum = -jump_vel * mass
 		# set_relative_y_vel(momentum / total_mass)

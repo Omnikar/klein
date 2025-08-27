@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ben1qosf53wv5"]
+
+[ext_resource type="Script" uid="uid://caaysmsikuooy" path="res://assets/scripts/lever.gd" id="1_4xen2"]
+[ext_resource type="Texture2D" uid="uid://drm3h2o7h0fif" path="res://assets/sprites/lever.png" id="1_nbr24"]
+[ext_resource type="PackedScene" uid="uid://bhjp3n1p65ad8" path="res://assets/scenes/objects/click_sound.tscn" id="3_rpe07"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4xen2"]
+radius = 3.0
+height = 10.0
+
+[node name="Lever" type="Node2D"]
+script = ExtResource("1_4xen2")
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+position = Vector2(-4, 0)
+texture = ExtResource("1_nbr24")
+region_enabled = true
+region_rect = Rect2(0, 0, 8, 8)
+
+[node name="KnobSprite" type="Sprite2D" parent="."]
+position = Vector2(-4, 0)
+texture = ExtResource("1_nbr24")
+region_enabled = true
+region_rect = Rect2(8, 0, 8, 8)
+
+[node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+visible = false
+shape = SubResource("CapsuleShape2D_4xen2")
+
+[node name="ClickSound" parent="." instance=ExtResource("3_rpe07")]

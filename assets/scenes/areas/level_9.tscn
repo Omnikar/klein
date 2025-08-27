@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=4 uid="uid://b6b0a2qfuac1e"]
+
+[ext_resource type="Script" uid="uid://btcwbpfoujsj3" path="res://assets/scripts/level.gd" id="1_00ipx"]
+[ext_resource type="TileSet" uid="uid://lnm0dxsgi887" path="res://assets/tilesets/environment-tiles.tres" id="2_4aodx"]
+[ext_resource type="PackedScene" uid="uid://m1j1mcwh58fu" path="res://assets/scenes/objects/game_camera.tscn" id="3_88kjr"]
+[ext_resource type="PackedScene" uid="uid://biobskbj64hib" path="res://assets/scenes/objects/portal.tscn" id="4_qxsww"]
+[ext_resource type="PackedScene" uid="uid://dvrinnce4sd6y" path="res://assets/scenes/objects/goal.tscn" id="5_h1deg"]
+[ext_resource type="PackedScene" uid="uid://bokqtkng5s04c" path="res://assets/scenes/objects/player.tscn" id="6_88l4t"]
+[ext_resource type="PackedScene" uid="uid://ben1qosf53wv5" path="res://assets/scenes/objects/lever.tscn" id="7_7ey56"]
+[ext_resource type="PackedScene" uid="uid://ra2gx8o66nrd" path="res://assets/scenes/objects/one_way.tscn" id="8_rpfsv"]
+[ext_resource type="PackedScene" uid="uid://ed7dg0nyvb5g" path="res://assets/scenes/objects/slide_gate.tscn" id="9_h2use"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_00ipx")
+level_num = 9
+
+[node name="Background" type="TileMapLayer" parent="."]
+modulate = Color(0.61339, 0.61339, 0.61339, 1)
+z_index = -5
+tile_map_data = PackedByteArray("AAD/////AQAAAAAAAAABAP//AQAAAAAAAAADAP//AQAAAAAAAAAFAP//AQAAAAAAAAAHAP//AQAAAAAAAAAJAP//AQAAAAAAAAALAP//AQAAAAAAAAD//wEAAQAAAAAAAAABAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAFAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAALAAEAAQAAAAAAAAD//wMAAQAAAAAAAAABAAMAAQAAAAAAAAADAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAHAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAALAAMAAQAAAAAAAAALAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAADAAUAAQAAAAAAAAABAAUAAQAAAAAAAAD//wUAAQAAAAAAAAD//wcAAQAAAAAAAAD//wkAAQAAAAAAAAD//wsAAQAAAAAAAAABAAsAAQAAAAAAAAABAAkAAQAAAAAAAAABAAcAAQAAAAAAAAADAAcAAQAAAAAAAAADAAkAAQAAAAAAAAADAAsAAQAAAAAAAAAFAAsAAQAAAAAAAAAFAAkAAQAAAAAAAAAFAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAHAAkAAQAAAAAAAAAHAAsAAQAAAAAAAAAJAAsAAQAAAAAAAAAJAAkAAQAAAAAAAAAJAAcAAQAAAAAAAAALAAcAAQAAAAAAAAALAAkAAQAAAAAAAAALAAsAAQAAAAAAAAA=")
+tile_set = ExtResource("2_4aodx")
+
+[node name="Environment" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAwAAAADAAMAAAAMAAsAAAADAAIAAAAMAAAAAAADAAIAAAAMAP//AAADAAEAAAALAAwAAAACAAMAAAALAP//AAACAAEAAAAKAP//AAACAAEAAAAIAP//AAACAAEAAAAHAAwAAAACAAMAAAAHAP//AAACAAEAAAAEAAwAAAACAAMAAAAEAP//AAACAAEAAAADAAwAAAACAAMAAAABAAwAAAACAAMAAAAAAAwAAAACAAMAAAAAAP//AAACAAEAAAD//wwAAAABAAMAAAD//wsAAAABAAIAAAD//wAAAAABAAIAAAD/////AAABAAEAAAADAP//AAABAAEAAAAIAAwAAAADAAMAAAABAP//AAADAAEAAAAKAAwAAAABAAMAAAD//wcAAAABAAIAAAD//wYAAAABAAIAAAAMAAQAAAADAAIAAAAMAAUAAAADAAIAAAALAAsAAAACAAIAAAAKAAsAAAABAAIAAAAIAAsAAAABAAUAAAAHAAsAAAACAAEAAAAEAAsAAAACAAEAAAADAAsAAAAEAAEAAAABAAsAAAACAAIAAAAAAAsAAAACAAIAAAALAAAAAAACAAIAAAALAAQAAAABAAIAAAALAAUAAAABAAIAAAAAAAAAAAACAAIAAAABAAAAAAADAAIAAAADAAAAAAABAAIAAAAEAAAAAAAEAAAAAAAHAAAAAAAFAAAAAAAIAAAAAAACAAIAAAAKAAAAAAACAAIAAAAAAAcAAAADAAIAAAAAAAYAAAADAAIAAAAAAAoAAAACAAIAAAD//woAAAABAAIAAAALAAoAAAACAAIAAAAMAAoAAAADAAIAAAD//wEAAAABAAIAAAAAAAEAAAACAAIAAAALAAEAAAACAAIAAAAMAAEAAAADAAIAAAAAAAkAAAAEAAEAAAAAAAgAAAADAAIAAAAAAAIAAAACAAMAAAD//wkAAAABAAIAAAD//wgAAAABAAIAAAD//wIAAAABAAMAAAAMAAkAAAADAAEAAAAMAAMAAAADAAIAAAAMAAIAAAADAAIAAAALAAkAAAACAAEAAAALAAMAAAAFAAAAAAALAAIAAAACAAIAAAAGAAAAAAACAAMAAAAGAP//AAACAAEAAAAFAAAAAAACAAMAAAAFAP//AAACAAEAAAABAAkAAAACAAEAAAABAAoAAAACAAIAAAAKAAkAAAABAAEAAAAKAAoAAAABAAIAAAAIAAkAAAAAAAEAAAAIAAoAAAAAAAIAAAADAAkAAAADAAEAAAADAAoAAAADAAIAAAAJAAAAAAACAAIAAAAJAP//AAACAAEAAAACAAwAAAACAAMAAAACAAkAAAACAAEAAAACAAoAAAACAAIAAAACAAsAAAACAAIAAAABAAEAAAADAAIAAAABAAIAAAAIAAEAAAAFAAsAAAACAAEAAAAGAAsAAAACAAEAAAAGAAwAAAACAAMAAAAFAAwAAAACAAMAAAAKAAEAAAACAAIAAAAKAAIAAAACAAIAAAD//wUAAAABAAEAAAAAAAUAAAADAAEAAAALAAYAAAABAAMAAAAMAAYAAAADAAMAAAAIAAEAAAACAAIAAAAJAAEAAAACAAIAAAAJAAIAAAACAAIAAAAIAAIAAAACAAIAAAAIAAMAAAACAAMAAAAJAAMAAAACAAMAAAAKAAMAAAACAAMAAAAHAAEAAAABAAIAAAAHAAIAAAABAAIAAAAHAAMAAAAHAAAAAAAEAAEAAAADAAIAAAAEAAIAAAAHAAIAAAADAAEAAAABAAIAAAADAAIAAAAIAAQAAAA=")
+tile_set = ExtResource("2_4aodx")
+
+[node name="GameCamera" parent="." instance=ExtResource("3_88kjr")]
+
+[node name="Portals" type="Node" parent="."]
+
+[node name="LeftPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_qxsww")]
+other_portal = NodePath("../RightPortal")
+
+[node name="Endpoint" parent="Portals/LeftPortal" index="0"]
+position = Vector2(0, 96)
+
+[node name="RightPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_qxsww")]
+position = Vector2(96, 0)
+other_portal = NodePath("../LeftPortal")
+flipped = true
+
+[node name="Endpoint" parent="Portals/RightPortal" index="0"]
+position = Vector2(0, 96)
+
+[node name="TopPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_qxsww")]
+other_portal = NodePath("../BottomPortal")
+
+[node name="Endpoint" parent="Portals/TopPortal" index="0"]
+position = Vector2(96, 0)
+
+[node name="BottomPortal" parent="Portals" node_paths=PackedStringArray("other_portal") instance=ExtResource("4_qxsww")]
+position = Vector2(0, 96)
+other_portal = NodePath("../TopPortal")
+flipped = true
+
+[node name="Endpoint" parent="Portals/BottomPortal" index="0"]
+position = Vector2(96, 0)
+
+[node name="Goal" parent="." instance=ExtResource("5_h1deg")]
+position = Vector2(80, 40)
+
+[node name="Player" parent="." instance=ExtResource("6_88l4t")]
+position = Vector2(16, 72)
+
+[node name="RightLever" parent="." instance=ExtResource("7_7ey56")]
+position = Vector2(64, 80)
+color = Color(0.921569, 0.168627, 0.176471, 1)
+
+[node name="LeftLever" parent="." instance=ExtResource("7_7ey56")]
+position = Vector2(32, 80)
+scale = Vector2(-1, 1)
+color = Color(0.156863, 0.396078, 0.905882, 1)
+flipped = true
+
+[node name="OneWay" parent="." instance=ExtResource("8_rpfsv")]
+position = Vector2(24, 24)
+rotation = 3.14159
+
+[node name="LeftGate" parent="." instance=ExtResource("9_h2use")]
+position = Vector2(33, 0)
+
+[node name="GateLayer" parent="LeftGate" index="1"]
+tile_map_data = PackedByteArray("AAAAAAIAAAAAAAEAAAAAAAEAAAAAAAEAAAAAAAAAAAAAAAEAAAA=")
+
+[node name="RightGate" parent="." instance=ExtResource("9_h2use")]
+position = Vector2(55, 16)
+
+[node name="RailLayer" parent="RightGate" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAAAAAEAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAIAAAA=")
+
+[node name="GateLayer" parent="RightGate" index="1"]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAAAAEAAAADAAEAAAAAAAAAAAADAAEAAAA=")
+
+[node name="ClosedPos" parent="RightGate" index="2"]
+position = Vector2(0, 16)
+
+[connection signal="goal_reached" from="Goal" to="." method="complete_level"]
+[connection signal="lever_toggled" from="RightLever" to="LeftGate" method="set_open"]
+[connection signal="lever_toggled" from="LeftLever" to="RightGate" method="set_open"]
+
+[editable path="Portals/LeftPortal"]
+[editable path="Portals/RightPortal"]
+[editable path="Portals/TopPortal"]
+[editable path="Portals/BottomPortal"]
+[editable path="LeftGate"]
+[editable path="RightGate"]

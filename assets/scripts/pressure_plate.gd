@@ -49,9 +49,6 @@ func send_plate_signals() -> void:
 	plate_updated.emit(pressed)
 	if pressed:
 		plate_pressed.emit()
-		$ClickSound.pitch_scale = 1.0
-		$ClickSound.play()
 	else:
 		plate_lifted.emit()
-		$ClickSound.pitch_scale = 0.7
-		$ClickSound.play()
+	$ClickSound.click(pressed)
