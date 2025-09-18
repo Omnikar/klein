@@ -91,9 +91,6 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAEAAAA=")
 [node name="ClosedPos" parent="SlideGate" index="2"]
 position = Vector2(0, 8)
 
-[node name="SlideGate2" parent="." instance=ExtResource("8_o6lw5")]
-position = Vector2(152, 24)
-
 [connection signal="goal_reached" from="Goal" to="." method="complete_level"]
 [connection signal="lever_toggled" from="Lever" to="SlideGate" method="set_open"]
 
@@ -103,4 +100,3 @@ position = Vector2(152, 24)
 [editable path="Portals/BottomPortal"]
 [editable path="Box"]
 [editable path="SlideGate"]
-[editable path="SlideGate2"]
