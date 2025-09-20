@@ -11,7 +11,7 @@ var title_base_scale: Vector2
 		return level_count
 	set(value):
 		level_count = value
-		if $LevelSelect/GridContainer != null:
+		if has_node("LevelSelect/GridContainer"):
 			for child in $LevelSelect/GridContainer.get_children():
 				child.queue_free()
 			for i in range(level_count):
